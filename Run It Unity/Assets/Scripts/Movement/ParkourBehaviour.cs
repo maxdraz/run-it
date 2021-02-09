@@ -16,7 +16,7 @@ namespace RunIt.Movement
             rb = GetComponent<Rigidbody>();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             action = InputManager.Instance.GetAction(inputName);
         }

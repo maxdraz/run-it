@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "aa2f80df-c66e-42b8-a4b4-2430aad1e4a5",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": ""
                 },
                 {
@@ -43,6 +43,14 @@
                     "id": "535e4998-59a1-42ad-afcf-23194c4b1436",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Scale",
+                    "type": "Value",
+                    "id": "cf131d16-e3ac-4962-abf1-e946ec4fc4ad",
+                    "expectedControlType": "Vector2",
+                    "processors": "NormalizeVector2",
                     "interactions": ""
                 }
             ],
@@ -242,6 +250,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52254f29-049a-462f-bdaf-4b6222913aee",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scale",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

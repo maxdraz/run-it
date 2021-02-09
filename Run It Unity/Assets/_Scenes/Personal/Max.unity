@@ -913,7 +913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!136 &394347987
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1006,20 +1006,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 394347986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4711dbceb8348929d5655d2c403b078, type: 3}
+  m_Script: {fileID: 11500000, guid: be35cd13703e434db4b85366dc0fb33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputName: Movement
-  minSpeed: 1
-  maxSpeed: 20
-  sideAcceleration: 2
-  forwardAcceleration: 5
-  fricitonCoefficient: 2
-  scale: 20
-  turnStrength: 20
   velocity: {x: 0, y: 0, z: 0}
-  sidewaysMaxSpeed: 2
-  forwardMaxSpeed: 5
+  maxAcceleration: 5
+  maxSpeed: 15
+  groundDetector: {fileID: 214710544}
 --- !u!54 &394347992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1240,7 +1234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &425708212
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1312,7 +1306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425708211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.033863, y: 11.249605, z: 3.3033302}
+  m_LocalPosition: {x: 29.07, y: 11.249605, z: 3.3033302}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1961975154}
@@ -1346,11 +1340,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 425708211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708ee094543e42698b9489db99525754, type: 3}
+  m_Script: {fileID: 11500000, guid: be35cd13703e434db4b85366dc0fb33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputName: Movement
-  maxSpeed: 5
+  velocity: {x: 0, y: 0, z: 0}
+  maxAcceleration: 0
+  maxSpeed: 15
+  groundDetector: {fileID: 0}
 --- !u!54 &425708218
 Rigidbody:
   m_ObjectHideFlags: 0

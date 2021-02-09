@@ -5,12 +5,22 @@ namespace RunIt.Testing
 {
     public class DotTest : MonoBehaviour
     {
-        public Transform other;
+        private Vector3 desired;
+        private Vector3 vel;
+        private Ray ray;
+        [SerializeField] private float rayLength;
 
         private void Update()
         {
-            var dot = Vector3.Dot(transform.forward, other.forward);
-            print(dot);
+            ray.origin = transform.position;
+            ray.direction = transform.forward * rayLength;
+            print(ray.direction.magnitude);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(ray.origin, ray.direction * rayLength);
         }
     }
 }

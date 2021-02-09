@@ -14,6 +14,9 @@ namespace RunIt.Rotation
         [SerializeField] private float sensitivity = 0.1f;
         [SerializeField] private Vector3 axis = Vector3.up;
         [SerializeField] private float maxAngle;
+        private float angleDelta;
+        public float AngleDelta => Mathf.Abs(angleDelta);
+
         // Start is called before the first frame update
         private void OnValidate()
         {
@@ -39,8 +42,8 @@ namespace RunIt.Rotation
         void LateUpdate()
         {
             if (action == null) return;
-            
-           var input = action.ReadValue<float>();
+            var prevAngle = angle;
+            var input = action.ReadValue<float>();
            angle += input * speed* sensitivity * Time.deltaTime;
 
            if (maxAngle > 0)
@@ -51,6 +54,8 @@ namespace RunIt.Rotation
 
             Quaternion rot = Quaternion.AngleAxis(angle, axis);
             transform.localRotation = rot;
+
+            angleDelta = angle - prevAngle;
         }
 
         
