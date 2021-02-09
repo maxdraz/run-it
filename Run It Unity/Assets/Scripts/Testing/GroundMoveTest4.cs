@@ -24,11 +24,13 @@ namespace RunIt.Testing
         [SerializeField] private Vector3 acceleration;
         [SerializeField] private InputRotator rotator;
         [SerializeField] private Detector groundDetector;
+        private Vector3 inputDir;
 
         private void OnEnable()
         {
             groundDetector.Detected += OnGrounded;
         }
+
         private void OnDisable()
         {
             groundDetector.Detected -= OnGrounded;
@@ -36,13 +38,13 @@ namespace RunIt.Testing
 
         private void Update()
         {
-          //  ConsoleCommands.ClearConsole();
-          if(!groundDetector.detected) return;
-            var inputDir = GetLocalInputDirection();
+            //  ConsoleCommands.ClearConsole();
+            if (!groundDetector.detected) return;
+            inputDir = GetLocalInputDirection();
             turnDelta = rotator.AngleDelta;
-            
+
             var dotInputForward = Vector3.Dot(inputDir, transform.forward);
-            if (dotInputForward <= 0.7f)    // if moving to sides or backwards
+            if (dotInputForward <= 0.7f) // if moving to sides or backwards
             {
                 maxSpeed = maxSidewaysSpeed;
                 maxAcceleration = sidewaysAcceleration;
@@ -52,8 +54,8 @@ namespace RunIt.Testing
                 maxSpeed = maxForwardSpeed;
                 maxAcceleration = forwardAcceleration;
             }
-            
-            if (inputDir == Vector3.zero)   // apply friction when no input
+
+            if (inputDir == Vector3.zero) // apply friction when no input
             {
                 acceleration = -velocity * groundFriction;
                 if (velocity.magnitude <= 0.01f)
@@ -63,9 +65,13 @@ namespace RunIt.Testing
             }
             else // otherwise accelerate normally
             {
-                acceleration = inputDir * maxAcceleration;
-            } 
-            
+                // acceleration = inputDir * maxAcceleration;
+                var desired = inputDir * maxSpeed;
+                var current = velocity;
+                var targetVel = desired - current;
+                acceleration = velocity + targetVel * 4f;
+            }
+
             if (turnDelta >= turnDeltaThreshold) //if turning rapidly
             {
                 // maxSpeed = slowSpeed;   //slow down the character
@@ -80,29 +86,41 @@ namespace RunIt.Testing
                 var targetVel = desired - current;
                 acceleration = velocity + targetVel * strength;
             }
-                
-                
+
+
             velocity += acceleration * Time.deltaTime;
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
             velocity.y = rb.velocity.y;
             rb.velocity = velocity;
-            
+
 //            print("turn delta: " + turnDelta);
         }
-        
+
         private Vector3 GetLocalInputDirection()
         {
             velocity = rb.velocity;
-            
+
             var inputRaw = action.ReadValue<Vector2>();
             var dir = new Vector3(inputRaw.x, 0,
                 inputRaw.y).normalized;
             return transform.TransformDirection(dir);
         }
 
-        void OnGrounded()
+        private void OnGrounded()
         {
-            velocity = transform.forward * maxSpeed;
+            //velocity = transform.forward * maxSpeed;
+            velocity.y = 0f;
+            // rb.velocity = inputDir * velocity.magnitude;
+            //    rb.velocity = inputDir * velocity.magnitude;
+            var input = action.ReadValue<Vector2>();
+            if (input == Vector2.zero)
+            {
+                rb.velocity = velocity * 0.25f;
+            }
+            else
+            {
+                rb.velocity = velocity * 0.75f;
+            }
         }
     }
 }
