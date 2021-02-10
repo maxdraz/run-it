@@ -7,7 +7,7 @@ namespace RunIt.Movement
     {
         [SerializeField] private float acceleration = 0.2f;
         [SerializeField] private float maxSpeed;
-        [SerializeField] private Detector groundDetector;
+        [SerializeField] private TriggerDetector groundDetector;
         
         void FixedUpdate()
         {

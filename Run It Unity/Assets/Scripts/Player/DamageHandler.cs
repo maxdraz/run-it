@@ -16,8 +16,6 @@ namespace RunIt.Player
         {
             rb = GetComponent<Rigidbody>();
             health = GetComponent<Health>();
-            
-           
         }
 
         private void OnEnable()

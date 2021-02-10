@@ -44,6 +44,7 @@ namespace RunIt.Testing
             turnDelta = rotator.AngleDelta;
 
             var dotInputForward = Vector3.Dot(inputDir, transform.forward);
+            
             if (dotInputForward <= 0.7f) // if moving to sides or backwards
             {
                 maxSpeed = maxSidewaysSpeed;
@@ -76,7 +77,6 @@ namespace RunIt.Testing
             {
                 // maxSpeed = slowSpeed;   //slow down the character
                 acceleration = -velocity * turnFriction;
-                print("clamping");
             }
 
             if (dotInputForward >= 0.7f)
@@ -93,7 +93,7 @@ namespace RunIt.Testing
             velocity.y = rb.velocity.y;
             rb.velocity = velocity;
 
-//            print("turn delta: " + turnDelta);
+//          print("turn delta: " + turnDelta);
         }
 
         private Vector3 GetLocalInputDirection()

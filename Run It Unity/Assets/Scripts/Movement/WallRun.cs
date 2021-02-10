@@ -10,37 +10,49 @@ namespace RunIt.Movement
     {
         [SerializeField] private Detector wallDetector;
         [SerializeField] private Detector groundDetector;
-        private void FixedUpdate()
-        {
-            
-        }
+        [SerializeField] private float scale;
+        [SerializeField] private bool canWallrun;
+        [SerializeField] private float fallThreshold; 
+       
 
         private void OnEnable()
         {
             StartCoroutine(SubscribeToInputCoroutine());
+            groundDetector.Detected += OnGrounded;
         }
 
         private void OnDisable()
         {
             action.started -= ExecuteWallRun;
+            groundDetector.Detected -= OnGrounded;
         }
 
         private void ExecuteWallRun(InputAction.CallbackContext ctx)
         {
-            if (!wallDetector.detected|| groundDetector.detected) return;
+            if (!wallDetector.detected || groundDetector.detected || !canWallrun) return;
 
             var velocity = rb.velocity;
+            
+            if (velocity.y <= -fallThreshold) return;   // if we are falling too much, dont wall run
+            velocity.y = 0;
 
             var direction =Quaternion.AngleAxis(20f, Vector3.right) * Vector3.up;
             direction = transform.TransformDirection(direction);
 
-            rb.velocity = direction * velocity.magnitude;
+            rb.velocity = direction * velocity.magnitude * scale;
+
+            canWallrun = false;
         }
 
         protected override IEnumerator SubscribeToInputCoroutine()
         {
             yield return new WaitForEndOfFrame();
             action.started += ExecuteWallRun;
+        }
+
+        private void OnGrounded()
+        {
+            canWallrun = true;
         }
     }
 }

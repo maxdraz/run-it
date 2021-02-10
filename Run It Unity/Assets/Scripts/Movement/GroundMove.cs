@@ -10,11 +10,11 @@ namespace RunIt.Movement
     {
         [SerializeField] private float acceleration;
         [SerializeField] private float maxSpeed;
-        [SerializeField] private Detector groundDetector;
+        [SerializeField] private TriggerDetector groundTriggerDetector;
 
         void FixedUpdate()
         {
-            if (!groundDetector.detected) return; //if input not set or not grounded, do nothing
+            if (!groundTriggerDetector.detected) return; //if input not set or not grounded, do nothing
             
             ExecuteMovement();
         }
