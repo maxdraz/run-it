@@ -28,12 +28,12 @@ namespace RunIt.Testing
 
         private void OnEnable()
         {
-            groundDetector.Detected += OnGrounded;
+            groundDetector.Enter += OnGrounded;
         }
 
         private void OnDisable()
         {
-            groundDetector.Detected -= OnGrounded;
+            groundDetector.Enter -= OnGrounded;
         }
 
         private void Update()
@@ -106,7 +106,7 @@ namespace RunIt.Testing
             return transform.TransformDirection(dir);
         }
 
-        private void OnGrounded()
+        private void OnGrounded(Collider other)
         {
             //velocity = transform.forward * maxSpeed;
             velocity.y = 0f;

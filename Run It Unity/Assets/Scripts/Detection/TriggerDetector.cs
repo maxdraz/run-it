@@ -24,7 +24,7 @@ namespace RunIt.Detection
             if (other.tag == toDetect)
             {
                 detected = true;
-                InvokeDetected();
+                InvokeEnter(other);
             }
         }
 
@@ -45,6 +45,12 @@ namespace RunIt.Detection
         private void OnTriggerExit(Collider other)
         {
             detected = false;
+            
+            if (other.tag == toDetect)
+            {
+                
+                InvokeExit(other);
+            }
         }
 
         private void OnDrawGizmos()

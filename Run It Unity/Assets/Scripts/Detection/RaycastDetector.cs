@@ -25,6 +25,22 @@ namespace RunIt.Detection
 
             var hit = CastRayOnce();
 
+
+            if (Physics.Raycast(ray, out hitInfo, rayLength, toDetect))
+            {
+                if (firstHit == false) // first hit
+                {
+                    InvokeEnter(hitInfo.collider);
+                    firstHit = true;
+                }
+                
+                //conmntinuous event
+            }
+            else
+            {
+                firstHit = false;
+            }
+            return;
             if (hit == true)
             {
                 if (firstHit) return;

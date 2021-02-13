@@ -12,10 +12,18 @@ namespace RunIt.Movement
         [SerializeField] private float wallFriction;
         [SerializeField] private float jumpOffForce;
         [SerializeField] private bool canJumpOff;
+        private GameObject currentWall;
 
         private void OnEnable()
         {
-            groundDetector.Detected += OnGroundDetected;
+            groundDetector.Enter += OnGroundEnter;
+            wallSlideDetector.Enter += OnWallEnter;
+        }
+
+        private void OnDisable()
+        {
+            groundDetector.Enter -= OnGroundEnter;
+            wallSlideDetector.Enter -= OnWallEnter;
         }
 
         private void FixedUpdate()
@@ -41,9 +49,19 @@ namespace RunIt.Movement
             rb.AddForce(jumpDirection * jumpOffForce, ForceMode.Force);
         }
 
-        private void OnGroundDetected()
+        private void OnGroundEnter(Collider other)
         {
             canJumpOff = true;
+            currentWall = null;
+        }
+
+        private void OnWallEnter(Collider other)
+        {
+            if (other.gameObject != currentWall)
+            {
+                canJumpOff = true;
+                currentWall = other.gameObject;
+            }
         }
         
         

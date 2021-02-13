@@ -20,7 +20,7 @@ namespace RunIt.Player
 
         private void OnEnable()
         {
-            fallDetector.Detected += OnFall;
+            fallDetector.Enter += OnFall;
            
         }
 
@@ -31,10 +31,10 @@ namespace RunIt.Player
 
         private void OnDisable()
         {
-            fallDetector.Detected -= OnFall;
+            fallDetector.Enter -= OnFall;
         }
 
-        private void OnFall()
+        private void OnFall(Collider other)
         {
             if (rb == null) return;
             

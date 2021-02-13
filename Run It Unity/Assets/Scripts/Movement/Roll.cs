@@ -24,13 +24,13 @@ namespace RunIt.Movement
         private void OnEnable()
         {
             StartCoroutine(SubscribeToInputCoroutine());
-            fallDetector.Detected += OnGroundDetected;
+            fallDetector.Enter += OnGroundEnter;
         }
 
         private void OnDisable()
         {
             action.started -= OnActionStart;
-            fallDetector.Detected -= OnGroundDetected;
+            fallDetector.Enter -= OnGroundEnter;
         }
 
 
@@ -53,7 +53,7 @@ namespace RunIt.Movement
             action.started += OnActionStart;
         }
 
-        private void OnGroundDetected( )
+        private void OnGroundEnter(Collider other)
         {
             inputWindowTimer.Start();
         }

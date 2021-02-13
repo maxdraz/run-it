@@ -18,13 +18,13 @@ namespace RunIt.Movement
         private void OnEnable()
         {
             StartCoroutine(SubscribeToInputCoroutine());
-            groundDetector.Detected += OnGrounded;
+            groundDetector.Enter += OnGrounded;
         }
 
         private void OnDisable()
         {
             action.started -= ExecuteWallRun;
-            groundDetector.Detected -= OnGrounded;
+            groundDetector.Enter -= OnGrounded;
         }
 
         private void ExecuteWallRun(InputAction.CallbackContext ctx)
@@ -50,7 +50,7 @@ namespace RunIt.Movement
             action.started += ExecuteWallRun;
         }
 
-        private void OnGrounded()
+        private void OnGrounded(Collider other)
         {
             canWallrun = true;
         }
