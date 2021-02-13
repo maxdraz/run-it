@@ -35,7 +35,6 @@ namespace RunIt.Enemies
         private void Update()
         {
             var angleToOriginal = Quaternion.Angle(transform.rotation,originalRotation);
-            print(angleToOriginal);
 
             if (angleToOriginal >= 0.2f && !target)
             {
@@ -51,8 +50,7 @@ namespace RunIt.Enemies
                 Shoot();
                 timer = shotCooldown;
             }
-            
-            print("rotating to target");
+
             RotateToTarget(target);
         }
 
@@ -75,7 +73,6 @@ namespace RunIt.Enemies
         
         private void OnTargetAcquired(Collider other)
         {
-            print("target acquired");
             target = other.transform;
         }
 
