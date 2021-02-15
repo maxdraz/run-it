@@ -5,9 +5,14 @@ using UnityEngine;
 
 namespace RunIt.Player
 {
-    public class Inventory : Displayable
+    public class Inventory : MonoBehaviour, ITextDisplayable
     {
         private int cryptokeyCount;
+        private void Start()
+        {
+            ValueChanged?.Invoke();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             var collectible = other.GetComponentInParent<Collectible>();
@@ -19,14 +24,14 @@ namespace RunIt.Player
         {
             cryptokeyCount++;
             CollectibleManager.Instance.OnCollect(collectible);
-            InvokeOnValueChanged(collectible.Name, cryptokeyCount);
-        }
-
-
-        public object GetValue()
-        {
-            return cryptokeyCount;
+            ValueChanged?.Invoke();
         }
         
+        public string GetDisplayText()
+        {
+            return  cryptokeyCount.ToString() + " / "+ CollectibleManager.Instance.GetCollectibleCount(0);
+        }
+
+        public event ITextDisplayable.ValueChangedHandler ValueChanged;
     }
 }

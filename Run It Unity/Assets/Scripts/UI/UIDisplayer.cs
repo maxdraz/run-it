@@ -5,6 +5,7 @@ namespace RunIt.UI
 {
     public abstract class UIDisplayer : MonoBehaviour
     {
+        
         protected virtual void Display()
         {
         }

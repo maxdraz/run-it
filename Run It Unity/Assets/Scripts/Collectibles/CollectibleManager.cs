@@ -10,7 +10,7 @@ namespace RunIt.Collectibles
     {
         public static CollectibleManager Instance;
         [SerializeField] private List<Collectible> collectibles;
-
+        
         public delegate void CollectionHandler(Collectible collectible);
 
         public CollectionHandler Collected;
