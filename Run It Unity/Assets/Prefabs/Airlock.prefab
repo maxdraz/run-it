@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7829865821236554342}
   m_Layer: 0
   m_Name: OpenExitDetector
-  m_TagString: Walkable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920634374706977736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1198, y: 2.3966, z: 4.17}
+  m_LocalPosition: {x: -3.1198, y: 4.3099995, z: 4.17}
   m_LocalScale: {x: 9.876519, y: 4.80417, z: 4.3549}
   m_Children: []
   m_Father: {fileID: 3734023486830857129}
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 9117210382940062724}
   m_Layer: 0
   m_Name: CloseExitDetector
-  m_TagString: Walkable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,7 +606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3910420333345062216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1198, y: 2.3966, z: 9.49}
+  m_LocalPosition: {x: -3.1198, y: 4.3099995, z: 9.49}
   m_LocalScale: {x: 9.876519, y: 4.80417, z: 4.3549}
   m_Children: []
   m_Father: {fileID: 3734023486830857129}
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 1054475257351158212}
   m_Layer: 0
   m_Name: CloseEntranceDetector
-  m_TagString: Walkable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,7 +717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4817041644786301013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1198, y: 2.3966, z: -3.6}
+  m_LocalPosition: {x: -3.1198, y: 4.31, z: -3.6}
   m_LocalScale: {x: 9.876519, y: 4.80417, z: 4.3549}
   m_Children: []
   m_Father: {fileID: 3734023486830857129}

@@ -27,6 +27,7 @@ namespace RunIt.Collectibles
             }
 
             return AirlockIndex - other.AirlockIndex;
+
         }
     }
 }
