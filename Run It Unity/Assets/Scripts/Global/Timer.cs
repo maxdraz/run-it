@@ -37,10 +37,7 @@ namespace RunIt.Global
             return Mathf.Round(elapsed).ToString();
         }
 
-        private void StartTimer()
-        {
-            
-        }
+        
         
         private void OnStartTimer(Collider other)
         {

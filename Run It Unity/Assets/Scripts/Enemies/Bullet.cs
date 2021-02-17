@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RunIt.Enemies
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : Damageable
     {
         [SerializeField] private float lifeTime = 5f;
         [SerializeField] private float force = 1f;

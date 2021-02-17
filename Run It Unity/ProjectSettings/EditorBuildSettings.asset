@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/Personal/Max/GroundMovePolish.unity
+    guid: 7cd10a01d4ff6604196ecd7a43ed1fa4
+  - enabled: 1
+    path: Assets/_Scenes/Personal/Max/TestScene2.unity
+    guid: eab9718ef7cf46c43b390356373c2908
   m_configObjects: {}

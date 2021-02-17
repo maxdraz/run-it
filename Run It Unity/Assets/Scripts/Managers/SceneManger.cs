@@ -1,3 +1,4 @@
+using System;
 using RunIt.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,14 +7,27 @@ namespace RunIt.Managers
 {
     public class SceneManger : MonoBehaviour
     {
+        public static SceneManger Instance;
         private InputAction action;
-        private int currentScene;
+        private int currentSceneIndex;
 
         [SerializeField] private string restartActionName;
-        // Start is called before the first frame update
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
+
         void Start()
         {
-            currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+            currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
             
             action = InputManager.Instance.GetAction(restartActionName);
             action.started += OnRestart;
@@ -35,9 +49,30 @@ namespace RunIt.Managers
         
         }
 
+        public void LoadNextScene()
+        {
+           if(!CanLoadNextScene()) return;
+            currentSceneIndex++;
+            LoadScene(currentSceneIndex);
+        }
+
         private void OnRestart(InputAction.CallbackContext ctxt)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(currentScene);
+            LoadScene(currentSceneIndex);
+        }
+
+        private void LoadScene(int index)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(index);
+        }
+
+        public bool CanLoadNextScene()
+        {
+            if (currentSceneIndex <= UnityEngine.SceneManagement.SceneManager.sceneCount - 1)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }
