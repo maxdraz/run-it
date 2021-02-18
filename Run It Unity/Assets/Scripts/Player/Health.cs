@@ -1,4 +1,5 @@
 ﻿using System;
+using FMODUnity;
 using RunIt.Detection;
 using RunIt.Enemies;
 using RunIt.UI;
@@ -62,11 +63,9 @@ namespace RunIt.Player
 
         public void ResetHealth()
         {
-            print("health reset" + health);
             health = maxHealth;
             ValueChanged?.Invoke();
-            print(health);
-            print(maxHealth);
+           
         }
 
         public string GetDisplayText()
@@ -77,7 +76,7 @@ namespace RunIt.Player
         private void OnDamaged(Collider other)
         {
             var damageable = other.GetComponentInParent<Damageable>();
-            
+
             SubtractHealth(damageable.Damage);
         }
 
