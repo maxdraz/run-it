@@ -8,7 +8,8 @@ using Random = UnityEngine.Random;
 
 namespace RunIt.UI.Leaderboard
 {
-    public class LeaderboardItemData
+    [System.Serializable]
+    public class LeaderboardSaveData
     {
         public float time;
         public string playerName;
@@ -21,9 +22,10 @@ namespace RunIt.UI.Leaderboard
         [SerializeField] private int numEntries = 1;
         [SerializeField] private float yOffset = 20;
         [SerializeField] private Detector displayLeaderboardDetector;
-        private List<LeaderboardItemData> leaderboard;
+        private List<LeaderboardSaveData> leaderboard;
 
         private List<LeaderboardItem> entries;
+        private string savePath;
 
         private void OnEnable()
         {
@@ -31,7 +33,7 @@ namespace RunIt.UI.Leaderboard
             displayLeaderboardDetector.Exit += OnDisableLeaderboard;
         }
 
-        private void OnDisable()
+        private void OnDisable()    
         {
             displayLeaderboardDetector.Enter -= OnEnableLeaderboard;
             displayLeaderboardDetector.Exit -= OnDisableLeaderboard;
@@ -40,6 +42,13 @@ namespace RunIt.UI.Leaderboard
         private void Start()
         {
             SetChildrenActive(false);
+            
+            savePath = Application.dataPath + "/SaveData/";
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+            
             TestJson();
         }
 
@@ -85,18 +94,18 @@ namespace RunIt.UI.Leaderboard
             }
         }
 
-        static int SortByTime(LeaderboardItemData a, LeaderboardItemData b)
+        static int SortByTime(LeaderboardSaveData a, LeaderboardSaveData b)
         {
             return a.time.CompareTo(b.time);
         }
 
-        private List<LeaderboardItemData> TestSorting()
+        private List<LeaderboardSaveData> TestSorting()
         {
-            leaderboard = new List<LeaderboardItemData>();
+            leaderboard = new List<LeaderboardSaveData>();
             //add random items
             for (int i = 0; i < 10; i++)
             {
-                var item = new LeaderboardItemData() {playerName = Utilities.Utilities.RandomName(5), time = Random.Range(10,5000)};
+                var item = new LeaderboardSaveData() {playerName = Utilities.Utilities.RandomName(5), time = Random.Range(10,5000)};
                 leaderboard.Add(item);
             }
             leaderboard.Sort(SortByTime);
@@ -107,16 +116,14 @@ namespace RunIt.UI.Leaderboard
         private void TestJson()
         {
             var items = TestSorting();
-            string json = "";
-            foreach (var item in items)
-            {
-                json += JsonUtility.ToJson(item);
-            }
+            string json = JsonUtility.ToJson(items);
             
-            File.WriteAllText(Application.dataPath+"/savefile.json", json);
-            
+            File.WriteAllText(savePath +  "LeaderboardData.json", json);
             //json = JsonUtility.ToJson
-           
+
+
+            var t = 5;
+            var leaderboard = new LeaderboardSaveData(){playerName = "max", time = t};
         }
 
         //private LeaderboardItemData loadLeaderboardItemData()
