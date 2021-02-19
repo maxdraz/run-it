@@ -6,11 +6,10 @@ namespace RunIt.Detection
     public class TriggerDetector : Detector
     {
         [SerializeField] private Collider collider;
-        [SerializeField] private string toDetect;
+        //[SerializeField] private string toDetect;
         private Vector3 collisionPoint;
-
-        
-
+        [SerializeField] private LayerMask toDetect;
+     
         private void Awake()
         {
             if (collider == null)
@@ -21,7 +20,7 @@ namespace RunIt.Detection
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == toDetect)
+            if(((1<<other.gameObject.layer) & toDetect) != 0)
             {
                 detected = true;
                 InvokeEnter(other);
@@ -30,11 +29,10 @@ namespace RunIt.Detection
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.tag == toDetect)
+            if(((1<<other.gameObject.layer) & toDetect) != 0)
             {
                 detected = true;
                 collisionPoint = other.ClosestPoint(transform.position);
-                
             }
             else
             {
@@ -45,10 +43,8 @@ namespace RunIt.Detection
         private void OnTriggerExit(Collider other)
         {
             detected = false;
-            
-            if (other.tag == toDetect)
+            if(((1<<other.gameObject.layer) & toDetect) != 0)
             {
-                
                 InvokeExit(other);
             }
         }

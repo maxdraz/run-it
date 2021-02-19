@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 2809380525749838323}
   - component: {fileID: 2809380525749838324}
   - component: {fileID: 4531497056326784916}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2809380526314662582}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 2809380527022488652}
   - component: {fileID: 2809380527022488649}
   - component: {fileID: 2809380527022488650}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,4 +372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detected: 0
   collider: {fileID: 4564789752265995218}
-  toDetect: Player
+  toDetect:
+    serializedVersion: 2
+    m_Bits: 512

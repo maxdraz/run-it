@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1374693143860894182}
   - component: {fileID: 1374693143860894183}
   - component: {fileID: 1374693143860894176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,9 +93,9 @@ GameObject:
   - component: {fileID: 1374693145824274193}
   - component: {fileID: 3924624220453649084}
   - component: {fileID: 1505523830251652338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint
-  m_TagString: Walkable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5765976382811930165}
   - component: {fileID: 508303374126006346}
   - component: {fileID: 3637825700844100895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

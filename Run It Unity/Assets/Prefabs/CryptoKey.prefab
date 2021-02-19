@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 71669526158742710}
   - component: {fileID: 71669526158742711}
   - component: {fileID: 71669526158742698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CryptoKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5627159650008711069}
   - component: {fileID: 4821677910738423692}
   - component: {fileID: 4731449388233981721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

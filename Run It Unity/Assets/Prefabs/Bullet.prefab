@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2845508615842384327}
   - component: {fileID: -5851907709354180963}
   - component: {fileID: -468140983987213510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: Damageable
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 2845508617007669682}
   - component: {fileID: 2845508617007669683}
   - component: {fileID: 2845508617007669680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Damageable
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 2845508617629834430}
   - component: {fileID: 2845508617629834431}
   - component: {fileID: 9194185360285913643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Damageable
   m_Icon: {fileID: 0}
