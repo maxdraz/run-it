@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
 
@@ -23,7 +24,15 @@ namespace RunIt.Managers
 
         public void QuitGame()
         {
-            Application.Quit();
+            if (Application.isEditor)
+            {
+                EditorApplication.isPlaying = false;
+            }
+            else
+            {
+                Application.Quit(); 
+            }
+            
         }
     }
 }
