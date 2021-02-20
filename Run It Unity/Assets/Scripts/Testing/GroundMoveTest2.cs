@@ -29,7 +29,6 @@ namespace RunIt.Testing
 
         private void Update()
         {
-            ConsoleCommands.ClearConsole();
             var inputDir = GetLocalInputDirection();
 
             print(rotator.AngleDelta);

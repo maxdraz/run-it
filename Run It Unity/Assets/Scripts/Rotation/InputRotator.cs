@@ -36,6 +36,7 @@ namespace RunIt.Rotation
         private void Start()
         {
             action = InputManager.Instance.GetAction(actionName);
+            angle = Quaternion.Angle(Quaternion.identity, transform.localRotation);
         }
 
         // Update is called once per frame

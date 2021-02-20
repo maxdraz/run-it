@@ -20,8 +20,6 @@ namespace RunIt.Testing
    
         private void Update()
         {
-            ConsoleCommands.ClearConsole();
-
             inputDir = GetLocalInputDirection();
             
             var prevVel = velocity;
