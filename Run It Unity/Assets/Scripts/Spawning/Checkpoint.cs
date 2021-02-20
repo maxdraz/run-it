@@ -7,20 +7,25 @@ namespace RunIt.Spawning
     public class Checkpoint : MonoBehaviour
     {
         [SerializeField] private Transform respawnTransform;
+        [SerializeField] private Detector playerDetector;
         
         public Transform RespawnTransform => respawnTransform;
 
-       private void SetSpawn( )
+        private void OnEnable()
         {
-            CheckpointManager.Instance.SetCheckpoint(this);
+            playerDetector.Enter += SetSpawn;
         }
 
-       private void OnTriggerEnter(Collider other)
-       {
-           if (other.CompareTag("Player"))
-           {
-               SetSpawn();
-           }
-       }
+        private void OnDisable()
+        {
+            playerDetector.Enter -= SetSpawn;
+        }
+
+        private void SetSpawn(Collider other)
+        {
+            CheckpointManager.Instance.SetCheckpoint(this);
+            print("spawn set");
+        }
+       
     }
 }

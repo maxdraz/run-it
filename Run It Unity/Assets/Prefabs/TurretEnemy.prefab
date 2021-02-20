@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2809380525616618169}
   - component: {fileID: 7130198626070560770}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TurretEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 85168437657104487}
   - component: {fileID: 4564789752265995218}
   - component: {fileID: 3869667807763070488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TargetDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,8 +290,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7332734091550044482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3645, y: -0.219, z: 5.7726}
-  m_LocalScale: {x: 14.765582, y: 1.4380791, z: 11.728755}
+  m_LocalPosition: {x: -0.3645, y: -0.4757, z: 5.7726}
+  m_LocalScale: {x: 14.765582, y: 1.9515169, z: 11.728755}
   m_Children: []
   m_Father: {fileID: 2809380525616618169}
   m_RootOrder: 1
