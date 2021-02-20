@@ -21,6 +21,7 @@ namespace RunIt.Testing
         [SerializeField] private Vector3 acceleration;
         private InputAction scaleAction;
         [SerializeField] private InputRotator rotator;
+
         protected override void Start()
         {
             base.Start();

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 71669526158742710}
   - component: {fileID: 71669526158742711}
   - component: {fileID: 71669526158742698}
+  - component: {fileID: 2541092190441546726}
   m_Layer: 7
   m_Name: CryptoKey
   m_TagString: Untagged
@@ -61,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: CryptoKeys
   airlockIndex: 0
+  audio: {fileID: 2541092190441546726}
 --- !u!114 &71669526158742698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +78,20 @@ MonoBehaviour:
   toMove: {fileID: 887757512860900908}
   frequency: 1
   distance: 0.2
+--- !u!114 &2541092190441546726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71669526158742704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/Pickup
+  playOnce: 0
 --- !u!1 &2596684011955431299
 GameObject:
   m_ObjectHideFlags: 0

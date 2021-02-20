@@ -24,7 +24,7 @@ namespace RunIt.Spawning
         private void SetSpawn(Collider other)
         {
             CheckpointManager.Instance.SetCheckpoint(this);
-            print("spawn set");
+           
         }
        
     }
