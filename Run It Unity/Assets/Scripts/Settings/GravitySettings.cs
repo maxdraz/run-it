@@ -14,6 +14,7 @@ namespace RunIt.Settings
         private void Awake()
         {
             Physics.gravity = new Vector3(0, -gravity, 0);
+            
         }
     }
 }

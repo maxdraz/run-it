@@ -1,4 +1,6 @@
+using System;
 using RunIt.Input;
+using RunIt.Settings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +8,7 @@ namespace RunIt.Rotation
 {
     public class InputRotator : MonoBehaviour
     {
+        [SerializeField] private bool playerControlled;
         private float angle;
         [SerializeField] private bool invert;
         [SerializeField] private string actionName = "Look X";
@@ -37,6 +40,15 @@ namespace RunIt.Rotation
         {
             action = InputManager.Instance.GetAction(actionName);
             angle = Quaternion.Angle(Quaternion.identity, transform.localRotation);
+            
+            if (playerControlled) return;
+            SensitivitySettings.Instance.ValueChanged += OnSensitivityChanged;
+        }
+
+        private void OnDisable()
+        {
+            if (playerControlled) return;
+            SensitivitySettings.Instance.ValueChanged -= OnSensitivityChanged;
         }
 
         // Update is called once per frame
@@ -59,6 +71,9 @@ namespace RunIt.Rotation
             angleDelta = angle - prevAngle;
         }
 
-        
+        private void OnSensitivityChanged(float value)
+        {
+            sensitivity = value;
+        }
     }
 }

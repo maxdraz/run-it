@@ -581,7 +581,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986034580300133019}
-  m_LocalRotation: {x: -0, y: 0.67141014, z: -0, w: 0.741086}
+  m_LocalRotation: {x: 0, y: 0.67141026, z: 0, w: 0.74108595}
   m_LocalPosition: {x: -20.32, y: 8.64, z: 1.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -872,9 +872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf33a7cba44cbb40ab5798c822cd292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControlled: 0
   invert: 0
   actionName: Look X
-  speed: 360
+  speed: 180
   sensitivity: 0.1
   axis: {x: 0, y: 1, z: 0}
   maxAngle: 0
@@ -1148,9 +1149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf33a7cba44cbb40ab5798c822cd292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControlled: 0
   invert: 0
   actionName: Look Y
-  speed: 360
+  speed: 180
   sensitivity: 0.1
   axis: {x: 1, y: 0, z: 0}
   maxAngle: 87
