@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/WallSlide
+  Event: event:/Player/WallSlide
   events: []
   oneInstance: 1
 --- !u!1 &1022675599
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/WallSlideJump
+  Event: event:/Player/WallSlideJump
   events: []
   oneInstance: 0
 --- !u!1 &1320853231
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Jump
+  Event: event:/Player/Jump
   events: []
   oneInstance: 0
 --- !u!1 &2026029555
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Landing
+  Event: event:/Player/Landing
   events: []
   oneInstance: 0
 --- !u!1 &2236169504913172595
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/WallRun
+  Event: event:/Player/WallRun
   events: []
   oneInstance: 0
 --- !u!1 &2570719033813711806
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Footsteps
+  Event: event:/Player/Footsteps
   events: []
   oneInstance: 0
 --- !u!1 &2986034579034146511
@@ -1806,6 +1806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605f27df6c924e51978f88b2606237b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Roll
+  Event: event:/Player/Roll
   events: []
   oneInstance: 0
