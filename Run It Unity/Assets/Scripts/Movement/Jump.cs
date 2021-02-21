@@ -11,39 +11,70 @@ namespace RunIt.Movement
         [SerializeField] private float speed;
         [SerializeField] private Detector groundDetector;
         [SerializeField] private FMODEventPlayer jumpSound;
-        private bool canJump;
+        [SerializeField] private bool inputLetGo = true;
+        [SerializeField] private bool canJump = true;
 
         protected override void Start()
         {
             base.Start();
-            action.started += OnJump;
+            action.started += OnInputStarted;
+            action.canceled += OnInputCanceled;
         }
 
         private void OnDisable()
         {
-            action.started -= OnJump;
+            action.started -= OnInputStarted;
+            action.canceled -= OnInputCanceled;
         }
 
         private void Update()
         {
-            //canJump = groundDetector.detected;
+            //canJump = CheckIfCanJump();
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            if(!groundDetector.detected || action.ReadValue<float>() <= 0) return;
-            
+            if (groundDetector.detected && action.ReadValue<float>() > 0)
+            {
+                if (inputLetGo)
+                {
+                    ExecuteJump();
+                    inputLetGo = false;
+                }
+            }
+        }
+
+        private void ExecuteJump()
+        {
+            print("jumped");
             var jumpForce = new Vector3(0, speed, 0);
             rb.AddForce(jumpForce, ForceMode.Impulse);
         }
 
-        private void OnJump(InputAction.CallbackContext ctx)
+        private void OnInputStarted(InputAction.CallbackContext ctx)
         {
-           // if(!groundDetector.detected) return;
-             //   jumpSound.Play();
-            //    print("playing oonce");
-           // }
+            if (groundDetector.detected)
+            {
+                jumpSound.Play();
+            }
+
+           // inputLetGo = false;
+        }
+        private void OnInputCanceled(InputAction.CallbackContext ctx)
+        {
+            inputLetGo = true;
+        }
+
+       
+        private bool CheckIfCanJump()
+        {
+            var input = action.ReadValue<float>();
+            var txt = "ground detected: " + groundDetector.detected + "\n";
+            txt += "is inputting: " + (input > 0)+"\n";
+            txt += "input let go: " + inputLetGo+"\n";
+            print(txt);
+            return groundDetector.detected && input > 0 && inputLetGo;
         }
     }
 }
