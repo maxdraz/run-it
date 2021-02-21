@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using RunIt.Audio;
 using RunIt.Detection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ namespace RunIt.Movement
         [SerializeField] private Detector fallDetector;
         [SerializeField] private float inputWindow;
         private Timer inputWindowTimer;
+        [SerializeField] private FMODEventPlayer rollSound;
 
         protected override void Awake()
         {
@@ -67,6 +69,9 @@ namespace RunIt.Movement
             rb.velocity = transform.forward * xZVelocity.magnitude;
             
             cameraAnimator.Play("Base Layer.CameraRollAnim", -1,0);
+            
+            //play sound
+            rollSound.Play();
         }
     }
 }

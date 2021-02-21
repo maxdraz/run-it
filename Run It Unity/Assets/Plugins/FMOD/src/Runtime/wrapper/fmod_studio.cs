@@ -1127,7 +1127,7 @@ namespace FMOD.Studio
 
         #endregion
     }
-
+    [Serializable]
     public struct EventInstance
     {
         public RESULT getDescription(out EventDescription description)

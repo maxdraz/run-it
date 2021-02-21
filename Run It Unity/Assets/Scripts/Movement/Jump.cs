@@ -8,11 +8,11 @@ namespace RunIt.Movement
 {
     public class Jump : ParkourBehaviour
     {
-        [SerializeField] private float speed;
+        [SerializeField] private float jumpForceMagnitude;
         [SerializeField] private Detector groundDetector;
         [SerializeField] private FMODEventPlayer jumpSound;
-        [SerializeField] private bool inputLetGo = true;
-        [SerializeField] private bool canJump = true;
+        private bool inputLetGo = true;
+        private bool canJump = true;
 
         protected override void Start()
         {
@@ -44,8 +44,7 @@ namespace RunIt.Movement
 
         private void ExecuteJump()
         {
-            print("jumped");
-            var jumpForce = new Vector3(0, speed, 0);
+            var jumpForce = new Vector3(0, jumpForceMagnitude, 0);
             rb.AddForce(jumpForce, ForceMode.Impulse);
         }
 
@@ -55,8 +54,6 @@ namespace RunIt.Movement
             {
                 jumpSound.Play();
             }
-
-           // inputLetGo = false;
         }
         private void OnInputCanceled(InputAction.CallbackContext ctx)
         {

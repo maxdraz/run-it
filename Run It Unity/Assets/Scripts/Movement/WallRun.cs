@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using RunIt.Audio;
 using RunIt.Detection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,8 @@ namespace RunIt.Movement
         [SerializeField] private Detector groundDetector;
         [SerializeField] private float scale;
         [SerializeField] private bool canWallrun;
-        [SerializeField] private float fallThreshold; 
+        [SerializeField] private float fallThreshold;
+        [SerializeField] private FMODEventPlayer wallrunSound;
        
 
         private void OnEnable()
@@ -42,6 +44,10 @@ namespace RunIt.Movement
             rb.velocity = direction * velocity.magnitude * scale;
 
             canWallrun = false;
+            
+            //play sound
+            wallrunSound.Play();
+            
         }
 
         protected override IEnumerator SubscribeToInputCoroutine()

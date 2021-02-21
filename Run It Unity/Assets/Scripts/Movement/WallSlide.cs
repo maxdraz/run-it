@@ -1,4 +1,5 @@
 ﻿using System;
+using RunIt.Audio;
 using RunIt.Detection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,17 +14,21 @@ namespace RunIt.Movement
         [SerializeField] private float jumpOffForce;
         [SerializeField] private bool canJumpOff;
         private GameObject currentWall;
+        [SerializeField] private FMODEventPlayer slideSound;
+        [SerializeField] private FMODEventPlayer jumpOffSound;
 
         private void OnEnable()
         {
             groundDetector.Enter += OnGroundEnter;
             wallSlideDetector.Enter += OnWallEnter;
+            wallSlideDetector.Exit += OnWallExit;
         }
 
         private void OnDisable()
         {
             groundDetector.Enter -= OnGroundEnter;
             wallSlideDetector.Enter -= OnWallEnter;
+            wallSlideDetector.Exit -= OnWallExit;
         }
 
         private void FixedUpdate()
@@ -39,7 +44,6 @@ namespace RunIt.Movement
                 JumpFromWall();
                 canJumpOff = false;
             }
-            
         }
 
         private void JumpFromWall()
@@ -47,6 +51,9 @@ namespace RunIt.Movement
             var jumpDirection = Quaternion.AngleAxis(-40f, Vector3.right) * Vector3.forward;
             jumpDirection = transform.TransformDirection(jumpDirection);
             rb.AddForce(jumpDirection * jumpOffForce, ForceMode.Force);
+            
+            //play sfx
+            jumpOffSound.Play();
         }
 
         private void OnGroundEnter(Collider other)
@@ -61,7 +68,16 @@ namespace RunIt.Movement
             {
                 canJumpOff = true;
                 currentWall = other.gameObject;
+                slideSound.Play();
             }
+            
+            
+        }
+
+        private void OnWallExit(Collider other)
+        {
+            //stop audio
+            slideSound.Stop();
         }
         
         

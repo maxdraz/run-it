@@ -1,4 +1,5 @@
 ﻿using System;
+using RunIt.Audio;
 using RunIt.Console;
 using RunIt.Detection;
 using RunIt.Movement;
@@ -25,6 +26,10 @@ namespace RunIt.Testing
         [SerializeField] private InputRotator rotator;
         [SerializeField] private Detector groundDetector;
         private Vector3 inputDir;
+        [SerializeField] private float strideLength = 1;
+        private float footStepTimer;
+        [SerializeField] private FMODEventPlayer footstepSound;
+        [SerializeField] private FMODEventPlayer landingSound;
 
         private void OnEnable()
         {
@@ -38,8 +43,62 @@ namespace RunIt.Testing
 
         private void Update()
         {
-            //  ConsoleCommands.ClearConsole();
             if (!groundDetector.detected) return;
+            
+            ExecuteGroundMove();
+            PlayFootsteps();
+        }
+
+        private Vector3 GetLocalInputDirection()
+        {
+            velocity = rb.velocity;
+
+            var inputRaw = action.ReadValue<Vector2>();
+            var dir = new Vector3(inputRaw.x, 0,
+                inputRaw.y).normalized;
+            return transform.TransformDirection(dir);
+        }
+
+        private void OnGrounded(Collider other)
+        {
+            //velocity = transform.forward * maxSpeed;
+            velocity.y = 0f;
+            // rb.velocity = inputDir * velocity.magnitude;
+            //    rb.velocity = inputDir * velocity.magnitude;
+            var input = action.ReadValue<Vector2>();
+            if (input == Vector2.zero)
+            {
+                rb.velocity = velocity * 0.25f;
+            }
+            else
+            {
+                rb.velocity = velocity * 0.75f;
+            }
+            
+            //play sound
+            landingSound.Play();
+        }
+
+        private void PlayFootsteps()
+        {
+            var currentSpeed = rb.velocity.magnitude;
+            if (currentSpeed <= 0)
+            {
+                footStepTimer=0; 
+                return;
+            }
+            
+            footStepTimer += Time.deltaTime;
+
+            var footstepDuration = strideLength / currentSpeed;
+
+            if (footstepDuration - footStepTimer > 0) return;
+            footstepSound.Play();
+            footStepTimer = 0;
+        }
+
+        private void ExecuteGroundMove()
+        {
             inputDir = GetLocalInputDirection();
             turnDelta = rotator.AngleDelta;
 
@@ -92,35 +151,6 @@ namespace RunIt.Testing
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
             velocity.y = rb.velocity.y;
             rb.velocity = velocity;
-
-//          print("turn delta: " + turnDelta);
-        }
-
-        private Vector3 GetLocalInputDirection()
-        {
-            velocity = rb.velocity;
-
-            var inputRaw = action.ReadValue<Vector2>();
-            var dir = new Vector3(inputRaw.x, 0,
-                inputRaw.y).normalized;
-            return transform.TransformDirection(dir);
-        }
-
-        private void OnGrounded(Collider other)
-        {
-            //velocity = transform.forward * maxSpeed;
-            velocity.y = 0f;
-            // rb.velocity = inputDir * velocity.magnitude;
-            //    rb.velocity = inputDir * velocity.magnitude;
-            var input = action.ReadValue<Vector2>();
-            if (input == Vector2.zero)
-            {
-                rb.velocity = velocity * 0.25f;
-            }
-            else
-            {
-                rb.velocity = velocity * 0.75f;
-            }
         }
     }
 }

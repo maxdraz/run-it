@@ -10,9 +10,10 @@ namespace RunIt.Audio
         
         [EventRef]
         public string Event = "";
-        private List<EventInstance> events;
+        [SerializeField] private List<EventInstance> events;
         //private bool playOnTriggerEnter;
-        [SerializeField] private bool playOnce;
+        [SerializeField] private bool oneInstance;
+        private static EventInstance instance;
         //private bool hasPlayed;
 
         private void Awake()
@@ -31,9 +32,19 @@ namespace RunIt.Audio
 
         public void Play()
         {
-            var eventInstance = CreateEvent();
-            eventInstance.start();
-            events.Add(eventInstance);
+            if (oneInstance)
+            {
+                instance = CreateEvent();
+                instance.start();
+                events.Add(instance);
+            }
+            else
+            {
+                var eventInstance = CreateEvent();
+                eventInstance.start();
+                events.Add(eventInstance);
+            }
+            
         }
         public void PlayWithParameter(string param, float value)
         {
@@ -46,6 +57,16 @@ namespace RunIt.Audio
         {
             return  RuntimeManager.CreateInstance(Event);
             
+        }
+
+        public void Stop()
+        {
+            for (int i = 0; i < events.Count; i++)
+            {
+                events[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                events[i].release();
+                events.RemoveAt(i);
+            }
         }
     }
 }
