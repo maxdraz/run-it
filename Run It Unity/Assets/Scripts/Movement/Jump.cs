@@ -35,14 +35,11 @@ namespace RunIt.Movement
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (groundDetector.detected && action.ReadValue<float>() > 0)
-            {
-                if (inputLetGo)
-                {
-                    ExecuteJump();
-                    inputLetGo = false;
-                }
-            }
+            canJump = CheckIfCanJump();
+            if(!canJump) return;
+            
+            ExecuteJump();
+            inputLetGo = false;
         }
 
         private void ExecuteJump()
@@ -70,10 +67,6 @@ namespace RunIt.Movement
         private bool CheckIfCanJump()
         {
             var input = action.ReadValue<float>();
-            var txt = "ground detected: " + groundDetector.detected + "\n";
-            txt += "is inputting: " + (input > 0)+"\n";
-            txt += "input let go: " + inputLetGo+"\n";
-            print(txt);
             return groundDetector.detected && input > 0 && inputLetGo;
         }
     }
