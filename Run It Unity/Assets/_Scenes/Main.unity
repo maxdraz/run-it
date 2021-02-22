@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivitySlider: {fileID: 4723498009853485691}
+  settings:
+    sensitivity: 0
 --- !u!1 &55103399
 GameObject:
   m_ObjectHideFlags: 0

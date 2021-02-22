@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf33a7cba44cbb40ab5798c822cd292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlled: 0
+  playerControlled: 1
   invert: 0
   actionName: Look X
   speed: 60
@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bf33a7cba44cbb40ab5798c822cd292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlled: 0
+  playerControlled: 1
   invert: 0
   actionName: Look Y
   speed: 60
