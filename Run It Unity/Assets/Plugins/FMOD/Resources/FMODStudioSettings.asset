@@ -415,7 +415,7 @@ MonoBehaviour:
   HasSourceProject: 1
   HasPlatforms: 1
   sourceProjectPath: Assets/Run It FMOD/Run It FMOD.fspro
-  sourceBankPath: Assets\Run It FMOD\Build
+  sourceBankPath: Assets/Run It FMOD/Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
