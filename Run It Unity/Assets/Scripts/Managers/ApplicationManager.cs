@@ -26,7 +26,7 @@ namespace RunIt.Managers
         {
             if (Application.isEditor)
             {
-                EditorApplication.isPlaying = false;
+                //EditorApplication.isPlaying = false;
             }
             else
             {

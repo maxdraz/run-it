@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using RunIt.Detection;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace RunIt.UI.Leaderboard
         [SerializeField] private float yOffset = 20;
         [SerializeField] private Detector displayLeaderboardDetector;
         private List<LeaderboardSaveData> leaderboard;
+        private bool alreadyDisplaying;
 
         private List<LeaderboardItem> entries;
         private string savePath;
@@ -55,7 +57,11 @@ namespace RunIt.UI.Leaderboard
         void OnEnableLeaderboard(Collider other)
         {
             SetChildrenActive(true);
-            GenerateLeaderboard();
+            if (!alreadyDisplaying)
+            {
+                GenerateLeaderboard();
+            }
+            alreadyDisplaying = true;
         }
 
         void OnDisableLeaderboard(Collider other)
@@ -67,6 +73,8 @@ namespace RunIt.UI.Leaderboard
                 var child = leaderboardItemParent.GetChild(i);
                 Destroy(child.gameObject);
             }
+
+            alreadyDisplaying = false;
         }
         
         private void GenerateLeaderboard()

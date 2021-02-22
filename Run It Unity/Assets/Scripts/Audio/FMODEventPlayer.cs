@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -10,7 +11,8 @@ namespace RunIt.Audio
         
         [EventRef]
         public string Event = "";
-        [SerializeField] private List<EventInstance> events;
+        private List<EventInstance> events;
+        [SerializeField] private bool playOnAwake;
         //private bool playOnTriggerEnter;
         [SerializeField] private bool oneInstance;
         private static EventInstance instance;
@@ -19,6 +21,14 @@ namespace RunIt.Audio
         private void Awake()
         {
             events = new List<EventInstance>();
+        }
+
+        private void Start()
+        {
+            if (playOnAwake)
+            {
+                Play();
+            }
         }
 
         private void OnDestroy()

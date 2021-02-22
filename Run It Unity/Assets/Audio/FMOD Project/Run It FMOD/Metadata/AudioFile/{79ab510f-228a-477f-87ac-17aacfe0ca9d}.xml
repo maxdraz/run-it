@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{79ab510f-228a-477f-87ac-17aacfe0ca9d}">
+		<property name="assetPath">
+			<value>music/gameplay/gameplay_music_placeholder_2.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12.666666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{50c88222-8609-4e3e-a316-979016d1eff2}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/WallSlide
-  events: []
+  playOnAwake: 0
   oneInstance: 1
 --- !u!1 &1022675599
 GameObject:
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/WallSlideJump
-  events: []
+  playOnAwake: 0
   oneInstance: 0
 --- !u!1 &1320853231
 GameObject:
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/Jump
-  events: []
+  playOnAwake: 0
   oneInstance: 0
 --- !u!1 &2026029555
 GameObject:
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/Landing
-  events: []
+  playOnAwake: 0
   oneInstance: 0
 --- !u!1 &2236169504913172595
 GameObject:
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/WallRun
-  events: []
+  playOnAwake: 0
   oneInstance: 0
 --- !u!1 &2570719033813711806
 GameObject:
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/Footsteps
-  events: []
+  playOnAwake: 0
   oneInstance: 0
 --- !u!1 &2986034579034146511
 GameObject:
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallDamageSpeed: 15
-  fallDamage: 5
+  fallDamage: 1
   fallDetector: {fileID: 2986034579069443786}
 --- !u!114 &2986034580300133012
 MonoBehaviour:
@@ -1197,8 +1197,8 @@ MonoBehaviour:
   playerControlled: 0
   invert: 0
   actionName: Look X
-  speed: 180
-  sensitivity: 0.1
+  speed: 60
+  sensitivity: 0.3
   axis: {x: 0, y: 1, z: 0}
   maxAngle: 0
 --- !u!114 &2986034580300133015
@@ -1466,8 +1466,8 @@ MonoBehaviour:
   playerControlled: 0
   invert: 0
   actionName: Look Y
-  speed: 180
-  sensitivity: 0.1
+  speed: 60
+  sensitivity: 0.3
   axis: {x: 1, y: 0, z: 0}
   maxAngle: 87
 --- !u!114 &5660055083654452481
@@ -1807,5 +1807,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: event:/Player/Roll
-  events: []
+  playOnAwake: 0
   oneInstance: 0

@@ -40,14 +40,17 @@ namespace RunIt.Rotation
         {
             action = InputManager.Instance.GetAction(actionName);
             angle = Quaternion.Angle(Quaternion.identity, transform.localRotation);
-            
-            if (playerControlled) return;
+        }
+
+        private void OnEnable()
+        {
+            if (!playerControlled) return;
             SensitivitySettings.Instance.ValueChanged += OnSensitivityChanged;
         }
 
         private void OnDisable()
         {
-            if (playerControlled) return;
+            if (!playerControlled) return;
             SensitivitySettings.Instance.ValueChanged -= OnSensitivityChanged;
         }
 
@@ -73,6 +76,7 @@ namespace RunIt.Rotation
 
         private void OnSensitivityChanged(float value)
         {
+            print("recieved message");
             sensitivity = value;
         }
     }

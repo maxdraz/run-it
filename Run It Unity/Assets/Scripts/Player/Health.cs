@@ -48,6 +48,8 @@ namespace RunIt.Player
             if (health <= 0) 
             {
                 PlayerDied?.Invoke();
+                print("invoked player die");
+                print("health: "+health);
             }
         }
 

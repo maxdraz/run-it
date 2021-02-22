@@ -29,5 +29,11 @@ namespace RunIt.Enemies
                 Destroy(this.gameObject);
             }
         }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            print("collided with");
+            Destroy(this.gameObject);
+        }
     }
 }
