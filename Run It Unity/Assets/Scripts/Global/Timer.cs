@@ -8,11 +8,26 @@ namespace RunIt.Global
 {
     public class Timer : MonoBehaviour, ITextDisplayable
     {
+        public static Timer Instance;
         private float elapsed;
+
+        public float Elapsed => elapsed;
+
         private bool startTimer;
         [SerializeField] private Detector startTimerDetector;
         [SerializeField] private Detector stopTimerDetector;
-        
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
 
         private void OnEnable()
         {

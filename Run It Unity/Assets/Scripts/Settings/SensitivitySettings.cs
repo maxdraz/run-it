@@ -18,7 +18,7 @@ namespace RunIt.Settings
 
         private string saveDirectory; 
         private string savePath;
-        [SerializeField] private Settings settings;
+        [SerializeField] private ControlSettings controlSettings;
 
         private void Awake()
         {
@@ -35,13 +35,13 @@ namespace RunIt.Settings
             }
             
             //load data
-            settings = LoadSettings();
-            SetSliderValue(settings.sensitivity);
+            controlSettings = LoadSettings();
+            SetSliderValue(controlSettings.sensitivity);
         }
 
         private void Start()
         {
-            OnValueChanged(settings.sensitivity);
+            OnValueChanged(controlSettings.sensitivity);
         }
 
         private void OnEnable()
@@ -58,11 +58,11 @@ namespace RunIt.Settings
         private void OnValueChanged(float newValue)
         {
             var roundedValue = Mathf.Round(newValue * 10) / 10;
-            settings.sensitivity = roundedValue;
-            ValueChanged?.Invoke(settings.sensitivity);
+            controlSettings.sensitivity = roundedValue;
+            ValueChanged?.Invoke(controlSettings.sensitivity);
         }
 
-        private Settings LoadSettings()
+        private ControlSettings LoadSettings()
         {
             //if no directory
             if (!Directory.Exists(saveDirectory))
@@ -72,19 +72,19 @@ namespace RunIt.Settings
             if (!File.Exists(savePath))
             {
                 File.Create(savePath);
-                return new Settings() {sensitivity = sensitivitySlider.value};
+                return new ControlSettings() {sensitivity = sensitivitySlider.value};
             }
             
             //else return obj from file
             var json = File.ReadAllText(savePath);
-            var obj = JsonUtility.FromJson<Settings>(json);
+            var obj = JsonUtility.FromJson<ControlSettings>(json);
            
             return obj;
         }
 
         private void SaveSettings()
         {
-            var json = JsonUtility.ToJson(settings);
+            var json = JsonUtility.ToJson(controlSettings);
 
             if (Directory.Exists(saveDirectory))
             {

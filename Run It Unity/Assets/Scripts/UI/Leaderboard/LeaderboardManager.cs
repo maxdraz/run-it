@@ -4,30 +4,33 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using RunIt.Detection;
+using RunIt.Global;
+using RunIt.Saving;
+using RunIt.Settings;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace RunIt.UI.Leaderboard
 {
+    
     [System.Serializable]
-    public class LeaderboardSaveData
+    public class LeaderboardEntry
     {
-        public float time;
         public string playerName;
+        public float time;
     }
     
     public class LeaderboardManager : MonoBehaviour
     {
         [SerializeField] private Transform leaderboardItemParent;
         [SerializeField] private GameObject leaderboardItemPrefab;
-        [SerializeField] private int numEntries = 1;
+        [SerializeField] private int maxNumEntries = 1;
         [SerializeField] private float yOffset = 20;
         [SerializeField] private Detector displayLeaderboardDetector;
-        private List<LeaderboardSaveData> leaderboard;
+        [SerializeField] private List<LeaderboardEntry> entries;
         private bool alreadyDisplaying;
-
-        private List<LeaderboardItem> entries;
-        private string savePath;
+        private string directory = "Leaderboard/";
+        private bool levelComplete;
 
         private void OnEnable()
         {
@@ -44,22 +47,27 @@ namespace RunIt.UI.Leaderboard
         private void Start()
         {
             SetChildrenActive(false);
-            
-            savePath = Application.dataPath + "/SaveData/";
-            if (!Directory.Exists(savePath))
-            {
-                Directory.CreateDirectory(savePath);
-            }
-            
-            TestJson();
+            //load entries 
+            LoadEntries();
+
+        }
+
+        private void OnDestroy()
+        {
+            SaveEntries();
         }
 
         void OnEnableLeaderboard(Collider other)
         {
-            SetChildrenActive(true);
+            //SetChildrenActive(true);
             if (!alreadyDisplaying)
             {
-                GenerateLeaderboard();
+                SetChildrenActive(true);
+                if (!levelComplete)
+                {
+                    GenerateLeaderboard();
+                    levelComplete = true;
+                }
             }
             alreadyDisplaying = true;
         }
@@ -68,19 +76,27 @@ namespace RunIt.UI.Leaderboard
         {
             SetChildrenActive(false);
 
-            for (int i = 0; i < leaderboardItemParent.childCount; i++)
-            {
-                var child = leaderboardItemParent.GetChild(i);
-                Destroy(child.gameObject);
-            }
+           // for (int i = 0; i < leaderboardItemParent.childCount; i++)
+         //   {
+          //      var child = leaderboardItemParent.GetChild(i);
+          //      Destroy(child.gameObject);
+         //   }
 
             alreadyDisplaying = false;
         }
-        
+
         private void GenerateLeaderboard()
         {
+//            var name = GameSettings.Instance.PlayerSettings.playerName;
+            var elapsed = Timer.Instance.Elapsed;
+            var currentEntry = new LeaderboardEntry() {playerName = name, time = Timer.Instance.Elapsed};
+
+            entries.Add(currentEntry);
+            entries.Sort(SortByTime);
+            levelComplete = true;
             
-            for (int i = 0; i < numEntries; i++)
+
+            for (int i = 0; i < maxNumEntries; i++)
             {
                 var item = GameObject.Instantiate(leaderboardItemPrefab, leaderboardItemParent);
                 var rectTransform = item.GetComponent<RectTransform>();
@@ -88,8 +104,8 @@ namespace RunIt.UI.Leaderboard
                 rectTransform.position = leaderboardItemParent.transform.TransformPoint(newPos);
 
                 var data = item.GetComponent<LeaderboardItem>();
-                data.PlayerName.text = Utilities.Utilities.RandomName(Random.Range(3,6));
-                data.Time.text = Random.Range(200, 5000).ToString();
+                data.PlayerName.text = currentEntry.playerName;
+                data.Time.text = entries[i].time.ToString();
                 data.Rank.text = (i + 1).ToString();
             }
         }
@@ -102,43 +118,38 @@ namespace RunIt.UI.Leaderboard
             }
         }
 
-        static int SortByTime(LeaderboardSaveData a, LeaderboardSaveData b)
+        static int SortByTime(LeaderboardEntry a, LeaderboardEntry b)
         {
             return a.time.CompareTo(b.time);
         }
-
-        private List<LeaderboardSaveData> TestSorting()
+        
+        private void LoadEntries()
         {
-            leaderboard = new List<LeaderboardSaveData>();
-            //add random items
-            for (int i = 0; i < 10; i++)
+            if (!Directory.Exists(SaveSystem.SAVE_DIRECTORY + directory))
             {
-                var item = new LeaderboardSaveData() {playerName = Utilities.Utilities.RandomName(5), time = Random.Range(10,5000)};
-                leaderboard.Add(item);
+                Directory.CreateDirectory(SaveSystem.SAVE_DIRECTORY + directory);
             }
-            leaderboard.Sort(SortByTime);
-
-            return leaderboard;
-        }
-
-        private void TestJson()
-        {
-            var items = TestSorting();
-            string json = JsonUtility.ToJson(items);
+            var files = Directory.GetFiles(SaveSystem.SAVE_DIRECTORY + directory,"*.json");
+            if(files.Length <= 0) return;
             
-            File.WriteAllText(savePath +  "LeaderboardData.json", json);
-            //json = JsonUtility.ToJson
-
-
-            var t = 5;
-            var leaderboard = new LeaderboardSaveData(){playerName = "max", time = t};
+            for (int i = 0; i < files.Length; i++)
+            {
+                var entry = SaveSystem.Load<LeaderboardEntry>("LeaderboardData/entry_" + i + ".json");
+                entries.Add(entry);
+            }
         }
-
-        //private LeaderboardItemData loadLeaderboardItemData()
-        //{
-            //JsonUtility.FromJson<LeaderboardItemData>()
-           // string json = File.ReadAllText(Application.dataPath + "/SaveData/LeaderboardData.json");
-            //File.
-        //}
+        
+        private void SaveEntries()
+        {
+            entries.Sort(SortByTime);
+            var entryCount = Mathf.Min(entries.Count, maxNumEntries);
+            
+            print(entryCount);
+            for (int i = 0; i < entryCount; i++)
+            {
+                SaveSystem.Save(entries[i], directory, "entry_" + i + ".json");
+            }
+            print("saved");
+        }
     }
 }

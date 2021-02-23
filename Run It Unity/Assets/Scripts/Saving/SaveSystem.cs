@@ -7,7 +7,7 @@ namespace RunIt.Saving
 {
     public static class SaveSystem
     {
-        private static readonly string SAVE_DIRECTORY = Application.dataPath + "/SaveData/";
+        public static readonly string SAVE_DIRECTORY = Application.dataPath + "/SaveData/";
 
         public static void Save(object obj, string directory, string fileName)
         {
