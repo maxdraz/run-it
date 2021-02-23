@@ -18,23 +18,19 @@ namespace RunIt.Testing
 
         private void Awake()
         {
-            LoadEntries();   
+            var one = 2;
+            var max = 5;
+            
+            print(Mathf.Min(one,max));
         }
 
         private void Update()
         {
-            if (addNew)
-            {
-                var e = RandomEntry();
-                entries.Add(e);
-                entries.Sort(SortByTime);
-                addNew = false;
-            }
+            
         }
 
         private void OnDestroy()
         {
-            SaveEntries();
         }
 
         private void SaveRandomEntries()

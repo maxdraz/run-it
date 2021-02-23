@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivitySlider: {fileID: 4723498009853485691}
-  settings:
+  controlSettings:
     sensitivity: 0
 --- !u!1 &55103399
 GameObject:
@@ -6934,9 +6934,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaderboardItemParent: {fileID: 319693875}
   leaderboardItemPrefab: {fileID: 7386171429546929714, guid: fec9b56d261e35e4fa8d20b220aab368, type: 3}
-  numEntries: 5
+  maxNumEntries: 5
   yOffset: 35
   displayLeaderboardDetector: {fileID: 217872593}
+  entries: []
 --- !u!1 &1961975153
 GameObject:
   m_ObjectHideFlags: 0

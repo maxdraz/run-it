@@ -24,12 +24,12 @@ namespace RunIt.UI.Leaderboard
     {
         [SerializeField] private Transform leaderboardItemParent;
         [SerializeField] private GameObject leaderboardItemPrefab;
-        [SerializeField] private int maxNumEntries = 1;
+        [SerializeField] private int maxNumEntries = 5;
         [SerializeField] private float yOffset = 20;
         [SerializeField] private Detector displayLeaderboardDetector;
         [SerializeField] private List<LeaderboardEntry> entries;
         private bool alreadyDisplaying;
-        private string directory = "Leaderboard/";
+        private string directory = "LeaderboardData/";
         private bool levelComplete;
 
         private void OnEnable()
@@ -87,16 +87,19 @@ namespace RunIt.UI.Leaderboard
 
         private void GenerateLeaderboard()
         {
-//            var name = GameSettings.Instance.PlayerSettings.playerName;
-            var elapsed = Timer.Instance.Elapsed;
-            var currentEntry = new LeaderboardEntry() {playerName = name, time = Timer.Instance.Elapsed};
-
-            entries.Add(currentEntry);
-            entries.Sort(SortByTime);
-            levelComplete = true;
+            LeaderboardEntry currentEntry = new LeaderboardEntry();
             
+            if (entries.Count < maxNumEntries)
+            {
+//          var name = GameSettings.Instance.PlayerSettings.playerName;
+                var elapsed = Timer.Instance.Elapsed;
+                currentEntry = new LeaderboardEntry() {playerName = "Max", time = Timer.Instance.Elapsed};
+                entries.Add(currentEntry);
+            }
 
-            for (int i = 0; i < maxNumEntries; i++)
+            entries.Sort(SortByTime);
+
+            for (int i = 0; i < entries.Count; i++)
             {
                 var item = GameObject.Instantiate(leaderboardItemPrefab, leaderboardItemParent);
                 var rectTransform = item.GetComponent<RectTransform>();
@@ -104,10 +107,12 @@ namespace RunIt.UI.Leaderboard
                 rectTransform.position = leaderboardItemParent.transform.TransformPoint(newPos);
 
                 var data = item.GetComponent<LeaderboardItem>();
-                data.PlayerName.text = currentEntry.playerName;
+                data.PlayerName.text = entries[i].playerName;
                 data.Time.text = entries[i].time.ToString();
                 data.Rank.text = (i + 1).ToString();
             }
+            
+            levelComplete = true;
         }
 
         private void SetChildrenActive(bool value)
@@ -125,26 +130,31 @@ namespace RunIt.UI.Leaderboard
         
         private void LoadEntries()
         {
+            
             if (!Directory.Exists(SaveSystem.SAVE_DIRECTORY + directory))
             {
                 Directory.CreateDirectory(SaveSystem.SAVE_DIRECTORY + directory);
             }
+            
             var files = Directory.GetFiles(SaveSystem.SAVE_DIRECTORY + directory,"*.json");
             if(files.Length <= 0) return;
             
             for (int i = 0; i < files.Length; i++)
             {
-                var entry = SaveSystem.Load<LeaderboardEntry>("LeaderboardData/entry_" + i + ".json");
+                var entry = SaveSystem.Load<LeaderboardEntry>(directory + "entry_" + i + ".json");
                 entries.Add(entry);
             }
+            
+           
         }
         
         private void SaveEntries()
         {
             entries.Sort(SortByTime);
             var entryCount = Mathf.Min(entries.Count, maxNumEntries);
-            
-            print(entryCount);
+            if (entryCount <= 0) return;
+            print("entries count " + entries.Count);
+            print("entry count " + entryCount);
             for (int i = 0; i < entryCount; i++)
             {
                 SaveSystem.Save(entries[i], directory, "entry_" + i + ".json");
