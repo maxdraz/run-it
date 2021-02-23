@@ -7,10 +7,7 @@ using UnityEngine.UI;
 namespace RunIt.Settings
 {
     [System.Serializable]
-    public class Settings
-    {
-        public float sensitivity;
-    }
+   
     public class SensitivitySettings : MonoBehaviour
     {
         public static SensitivitySettings Instance;
