@@ -91,13 +91,12 @@ namespace RunIt.UI.Leaderboard
             LeaderboardEntry currentEntry = new LeaderboardEntry();
             int currentIndex;
             var elapsed = Timer.Instance.Elapsed;
-            if (entries.Count < maxNumEntries || elapsed < entries[0].time)
-            {
-//          var name = GameSettings.Instance.PlayerSettings.playerName;
+           
+            var name = GameSettings.Instance.PlayerSettings.playerName;
                
-                currentEntry = new LeaderboardEntry() {playerName = "Max", time = Timer.Instance.Elapsed, currentRun = true};
-                entries.Add(currentEntry);
-            }
+            currentEntry = new LeaderboardEntry() {playerName = name, time = Timer.Instance.Elapsed, currentRun = true};
+            entries.Add(currentEntry);
+            
 
             entries.Sort(SortByTime);
 

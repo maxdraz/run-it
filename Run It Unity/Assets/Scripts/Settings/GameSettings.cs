@@ -9,7 +9,7 @@ namespace RunIt.Settings
     {
         public static GameSettings Instance;
         private AudioSettings audioSettings;
-        private PlayerSettings playerSettings;
+        [SerializeField] private PlayerSettings playerSettings;
 
         public PlayerSettings PlayerSettings
         {
@@ -27,26 +27,40 @@ namespace RunIt.Settings
             {
                 Destroy(this);
             }
-            audioSettings= SaveSystem.Load<AudioSettings>(audioSettings.fullPath);
 
-            if (!File.Exists(playerSettings.fullPath))
-            {
-                playerSettings = new PlayerSettings() {playerName = "defaultName"};
-                SaveSystem.Save(playerSettings,playerSettings.directory,playerSettings.fileName);
-            }
-            playerSettings = SaveSystem.Load<PlayerSettings>(playerSettings.fullPath);
+           // audioSettings = new AudioSettings();
+          //  audioSettings = SaveSystem.Load<AudioSettings>(audioSettings.directory,audioSettings.fileName);
 
+
+          audioSettings = new AudioSettings();
+          playerSettings = new PlayerSettings();
+        }
+
+        private void Start()
+        {
+           // if (!File.Exists(playerSettings.fullPath))
+          //  {
+             //   SaveSystem.Save(playerSettings,playerSettings.directory,playerSettings.fileName);
+           // }
+           // playerSettings = SaveSystem.Load<PlayerSettings>(playerSettings.fullPath);
+
+           playerSettings = SaveSystem.Load<PlayerSettings>(playerSettings.directory, playerSettings.fileName);
         }
 
         private void OnDisable()
         {
-            SaveSystem.Save(audioSettings,audioSettings.directory,audioSettings.fileName);
+            //SaveSystem.Save(audioSettings,audioSettings.directory,audioSettings.fileName);
             SaveSystem.Save(playerSettings,playerSettings.directory,playerSettings.fileName);
         }
 
         public void SetMasterVolume(float value)
         {
             audioSettings.masterVolume = value;
+        }
+
+        public void SetPlayerName(string name)
+        {
+            playerSettings.playerName = name;
         }
     }
 
@@ -69,7 +83,7 @@ namespace RunIt.Settings
     {
         public float sensitivity;
     }
-
+    [System.Serializable]
     public class PlayerSettings
     { 
         public readonly string directory = "PlayerSettings/";

@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputName: Jump
-  jumpForceMagnitude: 5.2
+  jumpForceMagnitude: 6
   groundDetector: {fileID: 2986034580447759961}
   jumpSound: {fileID: 1320853232}
 --- !u!114 &2986034580300133032

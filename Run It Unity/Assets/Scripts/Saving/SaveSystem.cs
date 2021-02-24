@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using FMODUnity;
 using RunIt.UI;
+using UnityEditor;
 using UnityEngine;
 
 namespace RunIt.Saving
@@ -27,6 +28,26 @@ namespace RunIt.Saving
             var json = File.ReadAllText(SAVE_DIRECTORY + filePath);
            
            return JsonUtility.FromJson<T>(json);
+        }
+        
+        public static T Load<T>(string dir, string fileName) where T : new()
+        {
+            if (!Directory.Exists(SAVE_DIRECTORY + dir))
+            {
+                Directory.CreateDirectory(SAVE_DIRECTORY + dir);
+            }
+
+            string json;
+            
+            if (!File.Exists(SAVE_DIRECTORY + dir + fileName))
+            {
+                var obj = new T();
+                Save(obj,dir,fileName);
+            }
+
+            json = File.ReadAllText(SAVE_DIRECTORY + dir + fileName);
+           
+            return JsonUtility.FromJson<T>(json);
         }
     }
 }
