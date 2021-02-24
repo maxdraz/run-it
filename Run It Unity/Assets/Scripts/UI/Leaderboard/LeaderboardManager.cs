@@ -18,6 +18,7 @@ namespace RunIt.UI.Leaderboard
     {
         public string playerName;
         public float time;
+        public bool currentRun;
     }
     
     public class LeaderboardManager : MonoBehaviour
@@ -88,18 +89,20 @@ namespace RunIt.UI.Leaderboard
         private void GenerateLeaderboard()
         {
             LeaderboardEntry currentEntry = new LeaderboardEntry();
-            
-            if (entries.Count < maxNumEntries)
+            int currentIndex;
+            var elapsed = Timer.Instance.Elapsed;
+            if (entries.Count < maxNumEntries || elapsed < entries[0].time)
             {
 //          var name = GameSettings.Instance.PlayerSettings.playerName;
-                var elapsed = Timer.Instance.Elapsed;
-                currentEntry = new LeaderboardEntry() {playerName = "Max", time = Timer.Instance.Elapsed};
+               
+                currentEntry = new LeaderboardEntry() {playerName = "Max", time = Timer.Instance.Elapsed, currentRun = true};
                 entries.Add(currentEntry);
             }
 
             entries.Sort(SortByTime);
 
-            for (int i = 0; i < entries.Count; i++)
+            var entryCount = Mathf.Min(entries.Count, maxNumEntries);
+            for (int i = 0; i < entryCount; i++)
             {
                 var item = GameObject.Instantiate(leaderboardItemPrefab, leaderboardItemParent);
                 var rectTransform = item.GetComponent<RectTransform>();
@@ -110,6 +113,15 @@ namespace RunIt.UI.Leaderboard
                 data.PlayerName.text = entries[i].playerName;
                 data.Time.text = entries[i].time.ToString();
                 data.Rank.text = (i + 1).ToString();
+
+                if (entries[i].currentRun)
+                {
+                    data.PlayerName.color = Color.yellow;
+                    data.Time.color = Color.yellow;
+                    data.Rank.color = Color.yellow;
+
+                    entries[i].currentRun = false;
+                }
             }
             
             levelComplete = true;
