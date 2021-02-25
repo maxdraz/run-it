@@ -31,13 +31,26 @@ namespace RunIt.Global
 
         private void OnEnable()
         {
-            startTimerDetector.Enter += OnStartTimer;
-            stopTimerDetector.Enter += OnStopTimer;
+            if (startTimerDetector)
+            {
+                startTimerDetector.Enter += OnStartTimer;
+            }
+            if (stopTimerDetector)
+            {
+                stopTimerDetector.Enter += OnStopTimer;
+            }
         }
 
         private void OnDisable()
         {
-            stopTimerDetector.Enter -= OnStopTimer;
+            if (startTimerDetector)
+            {
+                startTimerDetector.Enter -= OnStartTimer;
+            }
+            if (stopTimerDetector)
+            {
+                stopTimerDetector.Enter -= OnStopTimer;
+            }
         }
 
         private void Update()

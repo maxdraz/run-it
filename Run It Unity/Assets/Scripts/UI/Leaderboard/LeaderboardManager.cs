@@ -35,12 +35,14 @@ namespace RunIt.UI.Leaderboard
 
         private void OnEnable()
         {
+            if (!displayLeaderboardDetector) return;
             displayLeaderboardDetector.Enter += OnEnableLeaderboard;
             displayLeaderboardDetector.Exit += OnDisableLeaderboard;
         }
 
         private void OnDisable()    
         {
+            if (!displayLeaderboardDetector) return;
             displayLeaderboardDetector.Enter -= OnEnableLeaderboard;
             displayLeaderboardDetector.Exit -= OnDisableLeaderboard;
         }
