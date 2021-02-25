@@ -1142,6 +1142,7 @@ MonoBehaviour:
   strideLength: 1.5
   footstepSound: {fileID: 1491416480938478208}
   landingSound: {fileID: 2026029557}
+  landingSoundSpeed: 1
 --- !u!114 &2986034580300133037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986034580300133019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f67da88843b4ba58160ab34e718f432, type: 3}
   m_Name: 

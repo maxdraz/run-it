@@ -30,6 +30,7 @@ namespace RunIt.Testing
         private float footStepTimer;
         [SerializeField] private FMODEventPlayer footstepSound;
         [SerializeField] private FMODEventPlayer landingSound;
+        [SerializeField] private float landingSoundSpeed = 1f;
 
         private void OnEnable()
         {
@@ -61,6 +62,10 @@ namespace RunIt.Testing
 
         private void OnGrounded(Collider other)
         {
+            if(Mathf.Abs(velocity.y) >= landingSoundSpeed)
+                //play sound
+                landingSound.Play();
+            
             //velocity = transform.forward * maxSpeed;
             velocity.y = 0f;
             // rb.velocity = inputDir * velocity.magnitude;
@@ -75,8 +80,7 @@ namespace RunIt.Testing
                 rb.velocity = velocity * 0.75f;
             }
             
-            //play sound
-            landingSound.Play();
+            
         }
 
         private void PlayFootsteps()
