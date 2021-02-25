@@ -2399,7 +2399,7 @@ PrefabInstance:
       objectReference: {fileID: 153513218}
     - target: {fileID: 394347987, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: wallRunStrength
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2986034580300133014, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_Enabled

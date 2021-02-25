@@ -1,6 +1,7 @@
 ﻿using System;
 using RunIt.Detection;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace RunIt.Movement
 {
@@ -15,6 +16,10 @@ namespace RunIt.Movement
         [SerializeField] private bool isGrounded;
         [SerializeField] private bool wallDetected;
         [SerializeField] private bool canWallRun;
+
+        [SerializeField] private float wallRunTime = 1.5f;
+        [SerializeField] private float timer = 0;
+        private bool inputLetGo;
         
       
         private void OnEnable()
@@ -27,6 +32,8 @@ namespace RunIt.Movement
             }
 
             groundDetector.Enter += OnGrounded;
+            //input
+            action.canceled += 
         }
 
         private void OnDisable()
@@ -44,9 +51,16 @@ namespace RunIt.Movement
         {
             wallDetected = CheckIfWallDetected();
             isGrounded = groundDetector.detected;
-            if (wallDetected && !isGrounded && !hasWallRan && action.ReadValue<float>() > 0)
+            timer -= Time.deltaTime;
+            timer = Mathf.Max(0, timer);
+            if (wallDetected && !isGrounded && !hasWallRan)
             {
+                if (action.ReadValue<float>() > 0)
+                {
+                    timer = wallRunTime;
+                }
                 canWallRun = true;
+                timer = wallRunTime;
             }
             else
             {
@@ -134,6 +148,11 @@ namespace RunIt.Movement
             vector = rot * vector;
 
             return vector;
+        }
+
+        private void OnActionCanceled(InputAction.CallbackContext ctx)
+        {
+            inputLetGo = true;
         }
     }
 }
