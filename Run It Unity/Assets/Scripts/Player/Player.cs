@@ -32,6 +32,9 @@ namespace RunIt.Player
         {
             //reset position
             var checkpoint = CheckpointManager.Instance.CurrentCheckpoint;
+
+            if (!checkpoint) return;
+            
             var respawnTransform = checkpoint.RespawnTransform;
             transform.position = respawnTransform.position;
             transform.rotation = respawnTransform.rotation;

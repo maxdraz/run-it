@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7332734091550044482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3645, y: -0.4757, z: 5.7726}
+  m_LocalPosition: {x: -0.3645, y: -0.7, z: 5.7726}
   m_LocalScale: {x: 14.765582, y: 1.9515169, z: 11.728755}
   m_Children: []
   m_Father: {fileID: 2809380525616618169}
@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3363a0823bb24fa4a456d708c9faa096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawGizmos: 0
   detected: 0
   collider: {fileID: 4564789752265995218}
   toDetect:
