@@ -9,6 +9,7 @@ namespace RunIt.Detection
         //[SerializeField] private string toDetect;
         private Vector3 collisionPoint;
         [SerializeField] private LayerMask toDetect;
+        
      
         private void Awake()
         {
@@ -20,11 +21,15 @@ namespace RunIt.Detection
         
         private void OnTriggerEnter(Collider other)
         {
-            if(((1<<other.gameObject.layer) & toDetect) != 0)
+           
+            
+            if (((1 << other.gameObject.layer) & toDetect) != 0)
             {
                 detected = true;
+                
                 InvokeEnter(other);
             }
+            
         }
 
         private void OnTriggerStay(Collider other)
@@ -47,6 +52,7 @@ namespace RunIt.Detection
             {
                 InvokeExit(other);
             }
+
         }
 
         private void OnDrawGizmos()

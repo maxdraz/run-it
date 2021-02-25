@@ -164,13 +164,12 @@ namespace RunIt.UI.Leaderboard
             entries.Sort(SortByTime);
             var entryCount = Mathf.Min(entries.Count, maxNumEntries);
             if (entryCount <= 0) return;
-            print("entries count " + entries.Count);
-            print("entry count " + entryCount);
+           
             for (int i = 0; i < entryCount; i++)
             {
                 SaveSystem.Save(entries[i], directory, "entry_" + i + ".json");
             }
-            print("saved");
+           
         }
     }
 }

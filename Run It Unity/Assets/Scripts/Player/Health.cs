@@ -14,8 +14,6 @@ namespace RunIt.Player
 
         [SerializeField] private int maxHealth = 10;
         public int MaxHealth => maxHealth;
-
-        [SerializeField] private Detector damageDetector; 
         public delegate void DeathHandler();
         public event DeathHandler PlayerDied;
 
@@ -29,27 +27,19 @@ namespace RunIt.Player
             DisplayInitialHealth();
         }
 
-        private void OnEnable()
-        {
-            damageDetector.Enter += OnDamaged;
-        }
-
-        private void OnDisable()
-        {
-            damageDetector.Enter -= OnDamaged;
-        }
-
 
         public void SubtractHealth(int amt)
         {
             health -= amt;
             health = Mathf.Max(0, health);
             ValueChanged?.Invoke();
-            if (health <= 0) 
+            
+
+            if (health <= 0)
             {
                 PlayerDied?.Invoke();
-                print("invoked player die");
-                print("health: "+health);
+                health = maxHealth;
+                print("health on death is: " + health);
             }
         }
 

@@ -8089,6 +8089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5357329646503246655, guid: 2933e2345bc4129459a9e765354e1f90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2933e2345bc4129459a9e765354e1f90, type: 3}
 --- !u!1001 &2986034580509898569
@@ -9448,7 +9452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2, y: -9.73111}
+  m_AnchoredPosition: {x: 2, y: -9.731079}
   m_SizeDelta: {x: -624.6096, y: -143.8538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4734281848944228777

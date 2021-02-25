@@ -11,10 +11,11 @@ namespace RunIt.Player
     public class Player : MonoBehaviour
     {
         private Health health;
-
+        private Rigidbody rb;
         private void Awake()
         {
             health = GetComponent<Health>();
+            rb = GetComponent<Rigidbody>();
         }
 
         private void OnEnable()
@@ -29,13 +30,14 @@ namespace RunIt.Player
 
         private void OnRespawn()
         {
-            //reset health
-            health.ResetHealth();
             //reset position
             var checkpoint = CheckpointManager.Instance.CurrentCheckpoint;
             var respawnTransform = checkpoint.RespawnTransform;
             transform.position = respawnTransform.position;
             transform.rotation = respawnTransform.rotation;
+            
+            //reset health
+            health.ResetHealth();
         }
 
        

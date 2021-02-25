@@ -1,4 +1,5 @@
 ﻿using System;
+using RunIt.Player;
 using UnityEngine;
 
 namespace RunIt.Enemies
@@ -9,6 +10,7 @@ namespace RunIt.Enemies
         [SerializeField] private float force = 1f;
         private float timer;
         private Rigidbody rb;
+        private bool dealtDamage;
 
         private void Awake()
         {
@@ -32,8 +34,14 @@ namespace RunIt.Enemies
 
         private void OnCollisionEnter(Collision other)
         {
-            print("collided with");
+            if (dealtDamage) return;
+            
+            var health = other.gameObject.GetComponent<Health>();
+            if (!health) return;
+            
+            health.SubtractHealth(damage);
             Destroy(this.gameObject);
+            dealtDamage = true;
         }
     }
 }
