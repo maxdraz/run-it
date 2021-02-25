@@ -10,6 +10,15 @@ namespace RunIt.Detection
         private Ray ray;
         private RaycastHit hitInfo;
         [SerializeField] private bool firstHit;
+        
+        //raycast specific events
+        public delegate void RayEnterHandler(Ray ray, RaycastHit hit);
+        public delegate void RayStayHandler(Ray ray,RaycastHit hit);
+        public delegate void RayExitHandler(Ray ray,RaycastHit hit);
+
+        public event RayEnterHandler RayEnter;
+        public event RayStayHandler RayStay;
+        public event RayExitHandler RayExit;
 
         private void Start()
         {
@@ -19,40 +28,35 @@ namespace RunIt.Detection
 
         private void Update()
         {
-            ray.origin = transform.position;
-            ray.direction = transform.forward;
+            var t = transform;
+            ray.origin = t.position;
+            ray.direction = t.forward;
 
-            var hit = CastRayOnce();
+            //var hit = CastRayOnce();
 
 
             if (Physics.Raycast(ray, out hitInfo, rayLength, toDetect))
             {
                 if (firstHit == false) // first hit
                 {
-                    InvokeEnter(hitInfo.collider);
+                    RayEnter?.Invoke(ray, hitInfo);
+                    detected = true;
                     firstHit = true;
                 }
                 
                 //conmntinuous event
+                RayStay?.Invoke(ray, hitInfo);
             }
             else
             {
+                if (firstHit)
+                {
+                    RayExit?.Invoke(ray, hitInfo);
+                }
+
+                detected = false;
                 firstHit = false;
             }
-            return;
-            if (hit == true)
-            {
-                if (firstHit) return;
-                print("hit once");
-                firstHit = true;
-            }
-            else
-            {
-                firstHit = false;
-            }
-            
-            CastRayContinuously();
-            
         }
 
         private bool CastRayOnce()
@@ -70,6 +74,7 @@ namespace RunIt.Detection
 
         private void OnDrawGizmos()
         {
+            if (!drawGizmos) return;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayLength);
             Gizmos.DrawSphere(hitInfo.point, 0.5f);

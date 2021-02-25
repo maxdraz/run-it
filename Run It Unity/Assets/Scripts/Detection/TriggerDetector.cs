@@ -51,12 +51,13 @@ namespace RunIt.Detection
             if(((1<<other.gameObject.layer) & toDetect) != 0)
             {
                 InvokeExit(other);
-            }
+            } 
 
         }
 
         private void OnDrawGizmos()
         {
+            if (!drawGizmos) return;
             Gizmos.DrawSphere(collisionPoint, 0.5f);
         }
     }

@@ -4,6 +4,7 @@ namespace RunIt.Detection
 {
     public abstract class Detector : MonoBehaviour
     {
+        [SerializeField] protected bool drawGizmos;
         public bool detected;
         public delegate void DetectedHandler(Collider other);
         public event DetectedHandler Enter;
