@@ -33,7 +33,7 @@ namespace RunIt.Movement
 
             groundDetector.Enter += OnGrounded;
             //input
-            action.canceled += 
+           // action.canceled += 
         }
 
         private void OnDisable()
