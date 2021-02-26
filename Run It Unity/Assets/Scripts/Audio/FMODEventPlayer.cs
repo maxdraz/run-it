@@ -66,7 +66,6 @@ namespace RunIt.Audio
         private EventInstance CreateEvent()
         {
             return  RuntimeManager.CreateInstance(Event);
-            
         }
 
         public void Stop()

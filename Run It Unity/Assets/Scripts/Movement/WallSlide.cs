@@ -16,6 +16,7 @@ namespace RunIt.Movement
         private GameObject currentWall;
         [SerializeField] private FMODEventPlayer slideSound;
         [SerializeField] private FMODEventPlayer jumpOffSound;
+        [SerializeField] private float speedToWallSlide;
 
         private void OnEnable()
         {
@@ -33,7 +34,7 @@ namespace RunIt.Movement
 
         private void FixedUpdate()
         {
-            if (!wallSlideDetector.detected || rb.velocity.y >= -2f) return;
+            if (!wallSlideDetector.detected || rb.velocity.y >= - speedToWallSlide) return;
 
             var velocity = rb.velocity;
             velocity.y += wallFriction;

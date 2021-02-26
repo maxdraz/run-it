@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 1
   detected: 0
-  rayLength: 1.1
+  rayLength: 2
   toDetect:
     serializedVersion: 2
     m_Bits: 64
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 1
   detected: 0
-  rayLength: 1.1
+  rayLength: 1.3
   toDetect:
     serializedVersion: 2
     m_Bits: 64
@@ -1249,6 +1249,7 @@ MonoBehaviour:
   canJumpOff: 0
   slideSound: {fileID: 982692495}
   jumpOffSound: {fileID: 1022675601}
+  speedToWallSlide: 3
 --- !u!114 &2986034580300133010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,12 +1366,13 @@ MonoBehaviour:
   timer: 0
   wallDetected: 0
   wallRunAngle: 30
+  jumpOffAngle: 50
   wallDetectors:
   - {fileID: 122728052}
   - {fileID: 1176150059}
   groundDetector: {fileID: 2986034580447759961}
   hasTouchedGround: 0
-  jumpOutwardsSpeed: 10
+  jumpOffSpeed: 10
 --- !u!1 &2986034580353918560
 GameObject:
   m_ObjectHideFlags: 0
