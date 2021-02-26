@@ -11,10 +11,13 @@ namespace RunIt.Movement
     {
         [SerializeField] private GameObject cameraHolder;
         private Animator cameraAnimator;
+        [SerializeField] private Detector groundDetector;
         [SerializeField] private Detector fallDetector;
         [SerializeField] private float inputWindow;
         private Timer inputWindowTimer;
         [SerializeField] private FMODEventPlayer rollSound;
+        private bool canRoll;
+        
 
         protected override void Awake()
         {
@@ -27,12 +30,14 @@ namespace RunIt.Movement
         {
             StartCoroutine(SubscribeToInputCoroutine());
             fallDetector.Enter += OnGroundEnter;
+            groundDetector.Exit += OnGroundExit;
         }
 
         private void OnDisable()
         {
             action.started -= OnActionStart;
             fallDetector.Enter -= OnGroundEnter;
+            groundDetector.Exit -= OnGroundExit;
         }
 
 
@@ -62,7 +67,7 @@ namespace RunIt.Movement
 
         private void ExecuteRoll()
         {
-            if(!fallDetector.detected || !inputWindowTimer.isRunning) return;
+            if(!fallDetector.detected || !inputWindowTimer.isRunning || !canRoll) return;
 
             var vel = rb.velocity;
             var xZVelocity = new Vector3(vel.x,0,vel.z);
@@ -72,6 +77,13 @@ namespace RunIt.Movement
             
             //play sound
             rollSound.Play();
+
+            canRoll = false;
+        }
+
+        private void OnGroundExit(Collider other)
+        {
+            canRoll = true;
         }
     }
 }

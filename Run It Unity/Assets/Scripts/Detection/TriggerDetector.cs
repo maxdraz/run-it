@@ -38,6 +38,7 @@ namespace RunIt.Detection
             {
                 detected = true;
                 collisionPoint = other.ClosestPoint(transform.position);
+                InvokeStay(other);
             }
             else
             {

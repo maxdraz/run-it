@@ -39,7 +39,6 @@ namespace RunIt.Player
             {
                 PlayerDied?.Invoke();
                 health = maxHealth;
-                print("health on death is: " + health);
             }
         }
 

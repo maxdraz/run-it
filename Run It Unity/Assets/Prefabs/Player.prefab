@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122728050}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2986034580300133023}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
 --- !u!114 &122728052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,13 +203,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176150057}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.86602545, z: 0, w: 0.49999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2986034580300133023}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -120, z: 0}
 --- !u!114 &1176150059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,8 +685,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 5.8845134, z: 1}
-  m_Center: {x: 0, y: -2.4724097, z: 0}
+  m_Size: {x: 1, y: 4.039767, z: 1}
+  m_Center: {x: 0, y: -1.550038, z: 0}
 --- !u!114 &2986034579069443786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,6 +985,7 @@ GameObject:
   - component: {fileID: 2986034580300133008}
   - component: {fileID: 2986034580300133015}
   - component: {fileID: 394347987}
+  - component: {fileID: 5802479688650999677}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1224,6 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputName: Crouch
   cameraHolder: {fileID: 2986034580847795940}
+  groundDetector: {fileID: 2986034580447759961}
   fallDetector: {fileID: 2986034579069443786}
   inputWindow: 0.3
   rollSound: {fileID: 2719390817118805196}
@@ -1234,7 +1236,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986034580300133019}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddaede878eb347f0a9099560c42588e9, type: 3}
   m_Name: 
@@ -1273,7 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae12e37d7f064022b38c698b633c6c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallDamageSpeed: 15
+  fallDamageSpeed: 1
   fallDamage: 1
   fallDetector: {fileID: 2986034579069443786}
 --- !u!114 &2986034580300133012
@@ -1345,6 +1347,30 @@ MonoBehaviour:
   canWallRun: 0
   wallRunTime: 1.5
   timer: 0
+--- !u!114 &5802479688650999677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986034580300133019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334c609ee3144a0b9686abafb9e3be76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputName: Jump
+  speedMultiplier: 1
+  wallRunTime: 0.5
+  timer: 0
+  wallDetected: 0
+  wallRunAngle: 30
+  wallDetectors:
+  - {fileID: 122728052}
+  - {fileID: 1176150059}
+  groundDetector: {fileID: 2986034580447759961}
+  hasTouchedGround: 0
+  jumpOutwardsSpeed: 10
 --- !u!1 &2986034580353918560
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ namespace RunIt.Detection
             if (!drawGizmos) return;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayLength);
-            Gizmos.DrawSphere(hitInfo.point, 0.5f);
+            Gizmos.DrawSphere(hitInfo.point, 0.2f);
         }
     }
 }
