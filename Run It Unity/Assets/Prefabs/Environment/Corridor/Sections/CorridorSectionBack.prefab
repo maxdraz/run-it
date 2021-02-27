@@ -299,7 +299,6 @@ GameObject:
   - component: {fileID: 5239005919851139117}
   - component: {fileID: 5247392105233310871}
   - component: {fileID: 5257656591781939033}
-  - component: {fileID: 5207093131894427257}
   m_Layer: 6
   m_Name: Deck_Floor_01_snaps002 (10)
   m_TagString: Untagged
@@ -371,19 +370,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5207093131894427257
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233893123433625939}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.000025, y: 0.125, z: 3.0000005}
-  m_Center: {x: 1.5000001, y: -0.0625, z: 1.4999998}
 --- !u!1 &5241957049525481006
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +957,6 @@ GameObject:
   - component: {fileID: 5379769221206079084}
   - component: {fileID: 5379769221206079087}
   - component: {fileID: 5379769221206079086}
-  - component: {fileID: 5379769221206079085}
   m_Layer: 6
   m_Name: Deck_Floor_01_snaps002 (11)
   m_TagString: Untagged
@@ -1043,19 +1028,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5379769221206079085
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379769221206079083}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.000025, y: 0.125, z: 3.0000005}
-  m_Center: {x: 1.5000001, y: -0.0625, z: 1.4999998}
 --- !u!1 &5379769221230236392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1038,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5379769221230236393}
   m_Layer: 0
-  m_Name: CorridorSection
+  m_Name: CorridorSectionBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,7 +1085,6 @@ GameObject:
   - component: {fileID: 5379769221259659976}
   - component: {fileID: 5379769221259659979}
   - component: {fileID: 5379769221259659978}
-  - component: {fileID: 5379769221259659977}
   m_Layer: 6
   m_Name: Deck_Floor_01_snaps002 (12)
   m_TagString: Untagged
@@ -1185,19 +1156,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5379769221259659977
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379769221259659991}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.000025, y: 0.125, z: 3.0000005}
-  m_Center: {x: 1.5000001, y: -0.0625, z: 1.4999998}
 --- !u!1 &5738501293078994430
 GameObject:
   m_ObjectHideFlags: 0
