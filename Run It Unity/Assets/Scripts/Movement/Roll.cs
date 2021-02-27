@@ -66,10 +66,11 @@ namespace RunIt.Movement
         }
 
         private void ExecuteRoll()
-        {
-            if(!fallDetector.detected || !inputWindowTimer.isRunning || !canRoll) return;
-
+        { 
             var vel = rb.velocity;
+            if(!fallDetector.detected || !inputWindowTimer.isRunning || !canRoll || vel.y >= -2f) return;
+
+            
             var xZVelocity = new Vector3(vel.x,0,vel.z);
             rb.velocity = transform.forward * xZVelocity.magnitude;
             
