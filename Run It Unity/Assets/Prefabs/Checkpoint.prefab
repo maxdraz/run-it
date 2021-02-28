@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36dbf84a36a944a2a6f2281d59d79ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTransform: {fileID: 0}
+  respawnTransform: {fileID: 8798350838332269482}
   playerDetector: {fileID: 5027440776125936495}
 --- !u!1 &3867496596735648984
 GameObject:
