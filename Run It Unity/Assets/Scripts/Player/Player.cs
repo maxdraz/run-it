@@ -34,7 +34,8 @@ namespace RunIt.Player
             var checkpoint = CheckpointManager.Instance.CurrentCheckpoint;
 
             if (!checkpoint) return;
-            
+
+            rb.velocity = Vector3.zero;
             var respawnTransform = checkpoint.RespawnTransform;
             transform.position = respawnTransform.position;
             transform.rotation = respawnTransform.rotation;

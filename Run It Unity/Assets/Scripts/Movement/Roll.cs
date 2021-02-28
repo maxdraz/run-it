@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.IO.IsolatedStorage;
 using RunIt.Audio;
 using RunIt.Detection;
 using UnityEngine;
@@ -17,7 +18,10 @@ namespace RunIt.Movement
         private Timer inputWindowTimer;
         [SerializeField] private FMODEventPlayer rollSound;
         private bool canRoll;
-        
+        [SerializeField] private bool isRolling;
+
+        public bool IsRolling => isRolling;
+
 
         protected override void Awake()
         {
@@ -47,6 +51,10 @@ namespace RunIt.Movement
             {
                 inputWindowTimer.Update();
             }
+            else
+            {
+                isRolling = false;
+            }
         }
 
         protected override void OnActionStart(InputAction.CallbackContext ctx) // Roll
@@ -69,7 +77,7 @@ namespace RunIt.Movement
         { 
             var vel = rb.velocity;
             if(!fallDetector.detected || !inputWindowTimer.isRunning || !canRoll || vel.y >= -2f) return;
-
+            isRolling = true;
             
             var xZVelocity = new Vector3(vel.x,0,vel.z);
             rb.velocity = transform.forward * xZVelocity.magnitude;
@@ -85,6 +93,7 @@ namespace RunIt.Movement
         private void OnGroundExit(Collider other)
         {
             canRoll = true;
+            
         }
     }
 }

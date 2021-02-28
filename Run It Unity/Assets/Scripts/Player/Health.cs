@@ -19,7 +19,7 @@ namespace RunIt.Player
 
         private void Awake()
         {
-            ResetHealth();
+            SetHealth(health);
         }
 
         private void Start()
@@ -56,7 +56,12 @@ namespace RunIt.Player
         {
             health = maxHealth;
             ValueChanged?.Invoke();
-           
+        }
+
+        private void SetHealth(int value)
+        {
+            health = value;
+            ValueChanged?.Invoke();
         }
 
         public string GetDisplayText()

@@ -1,5 +1,6 @@
 ﻿using System;
 using RunIt.Detection;
+using RunIt.Movement;
 using UnityEngine;
 
 namespace RunIt.Player
@@ -11,11 +12,13 @@ namespace RunIt.Player
         [SerializeField] private float fallDamageSpeed = 10;
         [SerializeField] private int fallDamage;
         [SerializeField] private Detector fallDetector;
+        private Roll roll;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
             health = GetComponent<Health>();
+            roll = GetComponent<Roll>();
         }
 
         private void OnEnable()
@@ -36,7 +39,7 @@ namespace RunIt.Player
 
         private void OnFall(Collider other)
         {
-            if (rb == null) return;
+            if (rb == null || roll.IsRolling) return;
             
             if (Mathf.Abs(rb.velocity.y) >= fallDamageSpeed)
             {
