@@ -69,7 +69,7 @@ namespace RunIt.Movement
             {
                 canJumpOff = true;
                 currentWall = other.gameObject;
-                slideSound.Play();
+                //slideSound.Play();
             }
             
             

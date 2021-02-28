@@ -1,4 +1,5 @@
 using System;
+using RunIt.Detection;
 using RunIt.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ namespace RunIt.Managers
         public static SceneManger Instance;
         private InputAction action;
         private int currentSceneIndex;
+        [SerializeField] private Detector loadNextSceneDetector;
 
         [SerializeField] private string restartActionName;
 
@@ -35,12 +37,20 @@ namespace RunIt.Managers
 
         private void OnEnable()
         {
-            
+            if (loadNextSceneDetector)
+            {
+                loadNextSceneDetector.Enter += OnLoadNextScene;
+            }
         }
 
         private void OnDisable()
         {
             action.started -= OnRestart;
+            
+            if (loadNextSceneDetector)
+            {
+                loadNextSceneDetector.Enter -= OnLoadNextScene;
+            }
         }
 
         // Update is called once per frame
@@ -73,6 +83,12 @@ namespace RunIt.Managers
                 return true;
             }
             else return false;
+        }
+
+        private void OnLoadNextScene(Collider other)
+        {
+            print("should be loading");
+            LoadScene(2);
         }
     }
 }
