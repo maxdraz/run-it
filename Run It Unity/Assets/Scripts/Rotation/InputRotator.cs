@@ -41,7 +41,11 @@ namespace RunIt.Rotation
             action = InputManager.Instance.GetAction(actionName);
             angle = Quaternion.Angle(Quaternion.identity, transform.localRotation);
             if (!playerControlled) return;
-            SensitivitySettings.Instance.ValueChanged += OnSensitivityChanged;
+
+            if (SensitivitySettings.Instance)
+            {
+                SensitivitySettings.Instance.ValueChanged += OnSensitivityChanged;
+            }
         }
 
         private void OnEnable()
@@ -52,7 +56,11 @@ namespace RunIt.Rotation
         private void OnDisable()
         {
             if (!playerControlled) return;
-            SensitivitySettings.Instance.ValueChanged -= OnSensitivityChanged;
+
+            if (SensitivitySettings.Instance)
+            {
+                SensitivitySettings.Instance.ValueChanged -= OnSensitivityChanged;
+            }
         }
 
         // Update is called once per frame
