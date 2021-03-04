@@ -62,23 +62,29 @@ namespace RunIt.Testing
 
         private void OnGrounded(Collider other)
         {
-            if(Mathf.Abs(velocity.y) >= landingSoundSpeed)
+            if (Mathf.Abs(velocity.y) >= landingSoundSpeed)
+            {
                 //play sound
                 landingSound.Play();
+                velocity.y = 0f;
+                var input = action.ReadValue<Vector2>();
+                if (input == Vector2.zero)
+                {
+                    rb.velocity = velocity * 0.25f;
+                }
+                else
+                {
+                    rb.velocity = velocity * 0.75f;
+                }
+            }
+
+            
+            
             
             //velocity = transform.forward * maxSpeed;
-            velocity.y = 0f;
             // rb.velocity = inputDir * velocity.magnitude;
             //    rb.velocity = inputDir * velocity.magnitude;
-            var input = action.ReadValue<Vector2>();
-            if (input == Vector2.zero)
-            {
-                rb.velocity = velocity * 0.25f;
-            }
-            else
-            {
-                rb.velocity = velocity * 0.75f;
-            }
+           
             
             
         }
@@ -108,7 +114,7 @@ namespace RunIt.Testing
 
             var dotInputForward = Vector3.Dot(inputDir, transform.forward);
             
-            if (dotInputForward <= 0.7f) // if moving to sides or backwards
+            if (dotInputForward <= 0.7f) // if moving to sides or backwards, default 0.7f
             {
                 maxSpeed = maxSidewaysSpeed;
                 maxAcceleration = sidewaysAcceleration;

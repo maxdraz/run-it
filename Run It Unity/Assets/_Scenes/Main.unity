@@ -935,7 +935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799c3c6434126b44386300a760fe79eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: -944628639613478452, guid: f8394de030ade9c40ba9f3f7ca01ef5a, type: 3}
 --- !u!4 &113187634
 Transform:
   m_ObjectHideFlags: 0
@@ -10271,7 +10270,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 327156842c733044eb5a8fe4c4874e3c, type: 2}
+  sharedProfile: {fileID: 0}
 --- !u!1001 &1813589996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20062,7 +20061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6844476467728459579, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_RendererIndex
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6844476467728459579, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_RenderPostProcessing

@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 511358109}
   - component: {fileID: 511358110}
   m_Layer: 9
-  m_Name: VaultDetector
+  m_Name: LowWallDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,6 +139,57 @@ Transform:
   m_Father: {fileID: 2986034580300133023}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &748599992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748599993}
+  - component: {fileID: 748599994}
+  m_Layer: 9
+  m_Name: HighWallDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748599993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748599992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.128, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2986034580300133023}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748599994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748599992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f96666635e434da01005c547115e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGizmos: 1
+  detected: 0
+  gizmoColor: {r: 1, g: 0.01978819, b: 0, a: 1}
+  rayLength: 1
+  firstHit: 0
+  toDetect:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &982692493
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +1016,7 @@ Transform:
   - {fileID: 1176150058}
   - {fileID: 2254175549805961232}
   - {fileID: 511358109}
+  - {fileID: 748599993}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 84.352, z: 0}
@@ -1285,9 +1337,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputName: Jump
-  vaultDetector: {fileID: 511358110}
-  offset: 1
-  vaultSpeed: 3
+  lowWallDetector: {fileID: 511358110}
+  highWallDetector: {fileID: 748599994}
+  groundDetector: {fileID: 2986034580447759961}
+  upOffset: 1
+  forwardOffset: 0.1
+  baseVaultSpeed: 3.7
+  heightThreshold: 0.5
 --- !u!1 &2986034580353918560
 GameObject:
   m_ObjectHideFlags: 0
