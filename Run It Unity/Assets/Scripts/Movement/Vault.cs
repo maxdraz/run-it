@@ -17,6 +17,8 @@ namespace RunIt.Movement
         [SerializeField] private float baseVaultSpeed = 3f;
         private Vector3 prevVelocity;
         [SerializeField] private float heightThreshold;
+        [SerializeField] private float lowWallFallThreshold;
+        [SerializeField] private float highWallFallThreshold;
 
         private void OnEnable()
         {
@@ -59,7 +61,7 @@ namespace RunIt.Movement
         }
         void OnWallStay2(Ray ray,RaycastHit hit)
         {
-            if (vaultStarted || groundDetector.detected || rb.velocity.y < -0.6f) return;
+            if (vaultStarted || groundDetector.detected || rb.velocity.y < -lowWallFallThreshold) return; // def 0.6f
             var isWallVaultable = IsWallValutable(hit);
             if(!isWallVaultable) return;
             
@@ -69,7 +71,7 @@ namespace RunIt.Movement
         
         void OnHighWallStay(Ray ray,RaycastHit hit)
         {
-            if (vaultStarted || groundDetector.detected || rb.velocity.y < -2f) return;
+            if (vaultStarted || groundDetector.detected || rb.velocity.y < -highWallFallThreshold) return; // def -2f
             var isWallVaultable = IsWallValutable(hit);
             if(!isWallVaultable) return;
             
