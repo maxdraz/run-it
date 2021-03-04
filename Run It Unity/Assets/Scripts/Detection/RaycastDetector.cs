@@ -5,12 +5,21 @@ namespace RunIt.Detection
 {
     public class RaycastDetector : Detector
     {
+        [SerializeField] private Color gizmoColor;
         [SerializeField] private float rayLength;
+        [SerializeField] private bool firstHit;
         [SerializeField] private LayerMask toDetect;
         private Ray ray;
         private RaycastHit hitInfo;
-        [SerializeField] private bool firstHit;
         
+
+
+        private void Reset()
+        {
+            gizmoColor = Color.red;
+            rayLength = 1;
+        }
+
         //raycast specific events
         public delegate void RayEnterHandler(Ray ray, RaycastHit hit);
         public delegate void RayStayHandler(Ray ray,RaycastHit hit);
@@ -75,7 +84,7 @@ namespace RunIt.Detection
         private void OnDrawGizmos()
         {
             if (!drawGizmos) return;
-            Gizmos.color = Color.red;
+            Gizmos.color = gizmoColor;
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * rayLength);
             Gizmos.DrawSphere(hitInfo.point, 0.2f);
         }

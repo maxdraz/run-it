@@ -5,7 +5,8 @@ namespace RunIt.Input
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private InputActionAsset asset;
+        private Controls controls;
+        private InputActionAsset asset;
         public static InputManager Instance;
         private void Awake()
         {
@@ -17,7 +18,9 @@ namespace RunIt.Input
             {
                 Destroy(this);
             }
-            
+
+            controls = new Controls();
+            asset = controls.asset;
             asset.Enable();
         }
         private void OnEnable()

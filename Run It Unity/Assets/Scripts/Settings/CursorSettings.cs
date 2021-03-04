@@ -9,6 +9,11 @@ namespace RunIt.Settings
         public static CursorSettings Instance;
         [SerializeField] private CursorLockMode defaultMode;
 
+        private void Reset()
+        {
+            defaultMode = CursorLockMode.Locked;
+        }
+
         private void Awake()
         {
             if (Instance == null)
