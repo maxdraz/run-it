@@ -876,8 +876,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3.2242568}
-  m_Center: {x: 0, y: 0, z: 1.1121284}
+  m_Size: {x: 1, y: 1, z: 2.0892403}
+  m_Center: {x: 0.0000000019936304, y: 0, z: 0.5446199}
 --- !u!114 &2986034579373362622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,9 +1080,9 @@ MonoBehaviour:
   maxSidewaysSpeed: 8
   maxForwardSpeed: 10
   sidewaysAcceleration: 20
-  forwardAcceleration: 20
+  forwardAcceleration: 150
   turnDelta: 0
-  strength: 2
+  strength: 2.75
   turnDeltaThreshold: 4
   groundFriction: 1
   turnFriction: 100
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   groundDetector: {fileID: 2986034580447759961}
   scale: 1.2
   canWallrun: 0
-  fallThreshold: 2
+  fallThreshold: 3
   wallrunSound: {fileID: 3165934624025720698}
 --- !u!114 &2986034580300133033
 MonoBehaviour:
@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputName: Jump
-  jumpForceMagnitude: 6
+  jumpForceMagnitude: 6.2
   groundDetector: {fileID: 2986034580447759961}
   jumpSound: {fileID: 1320853232}
 --- !u!114 &2986034580300133032
@@ -1340,10 +1340,12 @@ MonoBehaviour:
   lowWallDetector: {fileID: 511358110}
   highWallDetector: {fileID: 748599994}
   groundDetector: {fileID: 2986034580447759961}
-  upOffset: 1
+  upOffset: 1.1
   forwardOffset: 0.1
-  baseVaultSpeed: 3.7
+  baseVaultSpeed: 4
   heightThreshold: 0.5
+  lowWallFallThreshold: 1
+  highWallFallThreshold: 3
 --- !u!1 &2986034580353918560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,12 +1587,12 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
