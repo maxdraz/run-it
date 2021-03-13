@@ -19,6 +19,7 @@ namespace RunIt.Movement
         [SerializeField] private float heightThreshold;
         [SerializeField] private float lowWallFallThreshold;
         [SerializeField] private float highWallFallThreshold;
+        [SerializeField] private float minDistToEndPoint = 0.01f;
 
         private void OnEnable()
         {
@@ -43,7 +44,7 @@ namespace RunIt.Movement
                 
                 transform.Translate(toTarget.normalized * (baseVaultSpeed * Time.deltaTime), Space.World);
 
-                if (toTarget.magnitude <= 0.01f)
+                if (toTarget.magnitude <= minDistToEndPoint)
                 {
                     rb.isKinematic = false;
                     vaultStarted = false;

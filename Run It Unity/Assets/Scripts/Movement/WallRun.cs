@@ -47,7 +47,6 @@ namespace RunIt.Movement
             
             //play sound
             wallrunSound.Play();
-            
         }
 
         protected override IEnumerator SubscribeToInputCoroutine()

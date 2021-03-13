@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Main.unity
     guid: 2c7812152da6c034b9eb4a94f77821c3
+  - enabled: 0
+    path: Assets/_Scenes/Personal/Max/Testing.unity
+    guid: 493261e6acfccf0498380479a762e1f4
   m_configObjects: {}
