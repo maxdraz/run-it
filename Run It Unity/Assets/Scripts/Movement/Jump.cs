@@ -46,7 +46,10 @@ namespace RunIt.Movement
         private void ExecuteJump()
         {
             var jumpForce = new Vector3(0, jumpForceMagnitude, 0);
-            rb.AddForce(transform.forward + jumpForce, ForceMode.Impulse);
+            //rb.AddForce(transform.forward + jumpForce, ForceMode.Impulse);
+            var mag = rb.velocity.magnitude;
+            var jumpVel = ((transform.forward)*mag) + new Vector3(0, jumpForceMagnitude, 0);
+            rb.velocity = jumpVel;
         }
 
         private void OnInputStarted(InputAction.CallbackContext ctx)

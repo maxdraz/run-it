@@ -19877,10 +19877,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2986034580300133022, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: strength
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2986034580300133023, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -23973,7 +23969,7 @@ PrefabInstance:
       objectReference: {fileID: 349300427}
     - target: {fileID: 7700325526215734105, guid: 6b652c10691b9e049827eb4592188fed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7700325526706664479, guid: 6b652c10691b9e049827eb4592188fed, type: 3}
       propertyPath: toDisplayGO
