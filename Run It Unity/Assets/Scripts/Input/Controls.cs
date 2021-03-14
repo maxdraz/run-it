@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @Controls : IInputActionCollection, IDisposable
+namespace RunIt.Input
 {
-    public InputActionAsset asset { get; }
-    public @Controls()
+    public class @Controls : IInputActionCollection, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @Controls()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""Controls"",
     ""maps"": [
         {
@@ -347,219 +349,220 @@ public class @Controls : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
+            // Player
+            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+            m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+            m_Player_LookX = m_Player.FindAction("Look X", throwIfNotFound: true);
+            m_Player_LookY = m_Player.FindAction("Look Y", throwIfNotFound: true);
+            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+            m_Player_Scale = m_Player.FindAction("Scale", throwIfNotFound: true);
+            // UI
+            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+            m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+            // Debug
+            m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
+            m_Debug_ReloadScene = m_Debug.FindAction("Reload Scene", throwIfNotFound: true);
+        }
+
+        public void Dispose()
+        {
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+
         // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_LookX = m_Player.FindAction("Look X", throwIfNotFound: true);
-        m_Player_LookY = m_Player.FindAction("Look Y", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Scale = m_Player.FindAction("Scale", throwIfNotFound: true);
+        private readonly InputActionMap m_Player;
+        private IPlayerActions m_PlayerActionsCallbackInterface;
+        private readonly InputAction m_Player_Movement;
+        private readonly InputAction m_Player_LookX;
+        private readonly InputAction m_Player_LookY;
+        private readonly InputAction m_Player_Jump;
+        private readonly InputAction m_Player_Crouch;
+        private readonly InputAction m_Player_Scale;
+        public struct PlayerActions
+        {
+            private @Controls m_Wrapper;
+            public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_Player_Movement;
+            public InputAction @LookX => m_Wrapper.m_Player_LookX;
+            public InputAction @LookY => m_Wrapper.m_Player_LookY;
+            public InputAction @Jump => m_Wrapper.m_Player_Jump;
+            public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+            public InputAction @Scale => m_Wrapper.m_Player_Scale;
+            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerActions instance)
+            {
+                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+                {
+                    @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @LookX.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookX;
+                    @LookX.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookX;
+                    @LookX.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookX;
+                    @LookY.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookY;
+                    @LookY.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookY;
+                    @LookY.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookY;
+                    @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Scale.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScale;
+                    @Scale.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScale;
+                    @Scale.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScale;
+                }
+                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
+                    @LookX.started += instance.OnLookX;
+                    @LookX.performed += instance.OnLookX;
+                    @LookX.canceled += instance.OnLookX;
+                    @LookY.started += instance.OnLookY;
+                    @LookY.performed += instance.OnLookY;
+                    @LookY.canceled += instance.OnLookY;
+                    @Jump.started += instance.OnJump;
+                    @Jump.performed += instance.OnJump;
+                    @Jump.canceled += instance.OnJump;
+                    @Crouch.started += instance.OnCrouch;
+                    @Crouch.performed += instance.OnCrouch;
+                    @Crouch.canceled += instance.OnCrouch;
+                    @Scale.started += instance.OnScale;
+                    @Scale.performed += instance.OnScale;
+                    @Scale.canceled += instance.OnScale;
+                }
+            }
+        }
+        public PlayerActions @Player => new PlayerActions(this);
+
         // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        private readonly InputActionMap m_UI;
+        private IUIActions m_UIActionsCallbackInterface;
+        private readonly InputAction m_UI_Pause;
+        public struct UIActions
+        {
+            private @Controls m_Wrapper;
+            public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Pause => m_Wrapper.m_UI_Pause;
+            public InputActionMap Get() { return m_Wrapper.m_UI; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+            public void SetCallbacks(IUIActions instance)
+            {
+                if (m_Wrapper.m_UIActionsCallbackInterface != null)
+                {
+                    @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                }
+                m_Wrapper.m_UIActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
+                }
+            }
+        }
+        public UIActions @UI => new UIActions(this);
+
         // Debug
-        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
-        m_Debug_ReloadScene = m_Debug.FindAction("Reload Scene", throwIfNotFound: true);
-    }
-
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_LookX;
-    private readonly InputAction m_Player_LookY;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Crouch;
-    private readonly InputAction m_Player_Scale;
-    public struct PlayerActions
-    {
-        private @Controls m_Wrapper;
-        public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @LookX => m_Wrapper.m_Player_LookX;
-        public InputAction @LookY => m_Wrapper.m_Player_LookY;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-        public InputAction @Scale => m_Wrapper.m_Player_Scale;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        private readonly InputActionMap m_Debug;
+        private IDebugActions m_DebugActionsCallbackInterface;
+        private readonly InputAction m_Debug_ReloadScene;
+        public struct DebugActions
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            private @Controls m_Wrapper;
+            public DebugActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @ReloadScene => m_Wrapper.m_Debug_ReloadScene;
+            public InputActionMap Get() { return m_Wrapper.m_Debug; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+            public void SetCallbacks(IDebugActions instance)
             {
-                @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @LookX.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookX;
-                @LookX.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookX;
-                @LookX.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookX;
-                @LookY.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookY;
-                @LookY.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookY;
-                @LookY.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookY;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Scale.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScale;
-                @Scale.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScale;
-                @Scale.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScale;
-            }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
-                @LookX.started += instance.OnLookX;
-                @LookX.performed += instance.OnLookX;
-                @LookX.canceled += instance.OnLookX;
-                @LookY.started += instance.OnLookY;
-                @LookY.performed += instance.OnLookY;
-                @LookY.canceled += instance.OnLookY;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
-                @Scale.started += instance.OnScale;
-                @Scale.performed += instance.OnScale;
-                @Scale.canceled += instance.OnScale;
+                if (m_Wrapper.m_DebugActionsCallbackInterface != null)
+                {
+                    @ReloadScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnReloadScene;
+                    @ReloadScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnReloadScene;
+                    @ReloadScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnReloadScene;
+                }
+                m_Wrapper.m_DebugActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @ReloadScene.started += instance.OnReloadScene;
+                    @ReloadScene.performed += instance.OnReloadScene;
+                    @ReloadScene.canceled += instance.OnReloadScene;
+                }
             }
         }
-    }
-    public PlayerActions @Player => new PlayerActions(this);
-
-    // UI
-    private readonly InputActionMap m_UI;
-    private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Pause;
-    public struct UIActions
-    {
-        private @Controls m_Wrapper;
-        public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pause => m_Wrapper.m_UI_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void SetCallbacks(IUIActions instance)
+        public DebugActions @Debug => new DebugActions(this);
+        public interface IPlayerActions
         {
-            if (m_Wrapper.m_UIActionsCallbackInterface != null)
-            {
-                @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
-            }
-            m_Wrapper.m_UIActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
-            }
+            void OnMovement(InputAction.CallbackContext context);
+            void OnLookX(InputAction.CallbackContext context);
+            void OnLookY(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
+            void OnCrouch(InputAction.CallbackContext context);
+            void OnScale(InputAction.CallbackContext context);
         }
-    }
-    public UIActions @UI => new UIActions(this);
-
-    // Debug
-    private readonly InputActionMap m_Debug;
-    private IDebugActions m_DebugActionsCallbackInterface;
-    private readonly InputAction m_Debug_ReloadScene;
-    public struct DebugActions
-    {
-        private @Controls m_Wrapper;
-        public DebugActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ReloadScene => m_Wrapper.m_Debug_ReloadScene;
-        public InputActionMap Get() { return m_Wrapper.m_Debug; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
-        public void SetCallbacks(IDebugActions instance)
+        public interface IUIActions
         {
-            if (m_Wrapper.m_DebugActionsCallbackInterface != null)
-            {
-                @ReloadScene.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnReloadScene;
-                @ReloadScene.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnReloadScene;
-                @ReloadScene.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnReloadScene;
-            }
-            m_Wrapper.m_DebugActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @ReloadScene.started += instance.OnReloadScene;
-                @ReloadScene.performed += instance.OnReloadScene;
-                @ReloadScene.canceled += instance.OnReloadScene;
-            }
+            void OnPause(InputAction.CallbackContext context);
         }
-    }
-    public DebugActions @Debug => new DebugActions(this);
-    public interface IPlayerActions
-    {
-        void OnMovement(InputAction.CallbackContext context);
-        void OnLookX(InputAction.CallbackContext context);
-        void OnLookY(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnScale(InputAction.CallbackContext context);
-    }
-    public interface IUIActions
-    {
-        void OnPause(InputAction.CallbackContext context);
-    }
-    public interface IDebugActions
-    {
-        void OnReloadScene(InputAction.CallbackContext context);
+        public interface IDebugActions
+        {
+            void OnReloadScene(InputAction.CallbackContext context);
+        }
     }
 }

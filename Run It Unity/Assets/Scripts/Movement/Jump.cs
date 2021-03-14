@@ -13,6 +13,7 @@ namespace RunIt.Movement
         [SerializeField] private FMODEventPlayer jumpSound;
         private bool inputLetGo = true;
         private bool canJump = true;
+        
 
         protected override void Start()
         {
@@ -65,6 +66,17 @@ namespace RunIt.Movement
         {
             var input = action.ReadValue<float>();
             return groundDetector.detected && input > 0 && inputLetGo;
+        }
+        
+        public void ExecuteJump(Vector3 jumpVelocity, bool needsGrounded)
+        {
+            if (needsGrounded)
+            {
+                if (!groundDetector.detected) return;
+            }
+          
+            rb.velocity = jumpVelocity;
+
         }
     }
 }
