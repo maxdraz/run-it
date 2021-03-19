@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 2986034580300133018}
   - component: {fileID: 2986034580300133035}
   - component: {fileID: 2986034580300133009}
+  - component: {fileID: 3990045603277084683}
   - component: {fileID: 4464810248954729574}
   - component: {fileID: 2986034580300133022}
   - component: {fileID: 2986034580300133037}
@@ -1124,6 +1125,7 @@ Transform:
   - {fileID: 748599993}
   - {fileID: 794031197}
   - {fileID: 1058562787}
+  - {fileID: 5818533668913848745}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 84.352, z: 0}
@@ -1171,6 +1173,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3990045603277084683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986034580300133019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff58f3ea95a643588778940a291c4963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputName: Jump
+  groundDetector: {fileID: 1058562788}
+  wallDetector: {fileID: 0}
+  deceleration: 2
 --- !u!114 &4464810248954729574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,6 +1944,57 @@ MonoBehaviour:
   toDetect:
     serializedVersion: 2
     m_Bits: 256
+--- !u!1 &3303953316382717752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5818533668913848745}
+  - component: {fileID: 1072089243781822533}
+  m_Layer: 9
+  m_Name: WallSphereCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5818533668913848745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3303953316382717752}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2986034580300133023}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072089243781822533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3303953316382717752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a231daa7ba4fc9976455800ffe507b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGizmos: 1
+  detected: 0
+  color: {r: 1, g: 0.72653306, b: 0.042452812, a: 1}
+  radius: 1
+  maxlength: 1
+  toDetect:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1 &3388217524217538991
 GameObject:
   m_ObjectHideFlags: 0

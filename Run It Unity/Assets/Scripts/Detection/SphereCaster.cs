@@ -36,11 +36,17 @@ namespace RunIt.Detection
             if (Physics.SphereCast(ray, radius, out hitInfo, maxlength,toDetect))
             {
                 detected = true;
+                if (!firstHit)
+                {
+                    //invoke enter
+                    Enter?.Invoke(hitInfo);
+                }
                 Stay?.Invoke(hitInfo);
             }
             else
             {
                 detected = false;
+                Exit?.Invoke(hitInfo);
             }
         }
 
