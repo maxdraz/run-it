@@ -7,6 +7,20 @@ using UnityEngine;
 
 namespace RunIt.Player
 {
+    [System.Serializable]
+    public class DamageInfo
+    {
+        public int damageAmout;
+        public enum DamageType
+        {
+            Fall,
+            Enemy,
+            Hazard
+        }
+
+        public DamageType damageType;
+    }
+    
     public class Health : MonoBehaviour, ITextDisplayable, IPlayerAttribute
     {
         [SerializeField] private int health;
@@ -14,7 +28,7 @@ namespace RunIt.Player
 
         [SerializeField] private int maxHealth = 10;
         public int MaxHealth => maxHealth;
-        public delegate void DeathHandler();
+        public delegate void DeathHandler(DamageInfo damageInfo);
         public event DeathHandler PlayerDied;
 
         private void Awake()
@@ -28,16 +42,17 @@ namespace RunIt.Player
         }
 
 
-        public void SubtractHealth(int amt)
+        public void SubtractHealth(DamageInfo damageInfo)
         {
-            health -= amt;
+            health -= damageInfo.damageAmout;
             health = Mathf.Max(0, health);
             ValueChanged?.Invoke();
             
 
             if (health <= 0)
             {
-                PlayerDied?.Invoke();
+                
+                PlayerDied?.Invoke(damageInfo);
                 health = maxHealth;
             }
         }
@@ -73,7 +88,7 @@ namespace RunIt.Player
         {
             var damageable = other.GetComponentInParent<Damageable>();
 
-            SubtractHealth(damageable.Damage);
+            SubtractHealth(damageable.DamageInfo);
         }
 
         public event ITextDisplayable.ValueChangedHandler ValueChanged;

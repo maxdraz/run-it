@@ -39,7 +39,7 @@ namespace RunIt.Enemies
             var health = other.gameObject.GetComponent<Health>();
             if (!health) return;
             
-            health.SubtractHealth(damage);
+            health.SubtractHealth(damageInfo);
             Destroy(this.gameObject);
             dealtDamage = true;
         }

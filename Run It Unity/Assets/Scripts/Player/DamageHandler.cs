@@ -9,8 +9,8 @@ namespace RunIt.Player
     {
         private Rigidbody rb;
         private Health health;
+        [SerializeField] private DamageInfo damageInfo;
         [SerializeField] private float fallDamageSpeed = 10;
-        [SerializeField] private int fallDamage;
         [SerializeField] private Detector fallDetector;
         private Roll roll;
 
@@ -43,7 +43,7 @@ namespace RunIt.Player
             
             if (Mathf.Abs(rb.velocity.y) >= fallDamageSpeed)
             {
-                health.SubtractHealth(fallDamage);
+                health.SubtractHealth(damageInfo);
                 
             }
             
