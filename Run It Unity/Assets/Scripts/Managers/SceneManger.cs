@@ -87,7 +87,6 @@ namespace RunIt.Managers
 
         private void OnLoadNextScene(Collider other)
         {
-            print("should be loading");
             LoadScene(2);
         }
     }

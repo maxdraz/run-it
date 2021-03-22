@@ -50,7 +50,6 @@ namespace RunIt.Movement
             var mag = rb.velocity.magnitude;
             var jumpVel = ((transform.forward)*mag) + new Vector3(0, jumpForceMagnitude, 0);
             rb.velocity = jumpVel;
-            print("velocity set");
         }
 
         private void OnInputStarted(InputAction.CallbackContext ctx)

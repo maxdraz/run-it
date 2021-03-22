@@ -71,13 +71,12 @@ namespace RunIt.Movement
                     var climbPos = hitInfo.point + (-hitInfo.normal  * 0.3f) + climbUpPos;
                     var toClimbPos = climbPos - transform.position;
                     transform.Translate(toClimbPos.normalized * (climbSpeed * Time.deltaTime), Space.World);
-                    print("let go!");
+                    
                     if (toClimbPos.magnitude <= 0.1f)
                     {
                         //transform.position = climbPos;
                         rb.isKinematic = false;
                         rb.velocity = Vector3.zero;
-                        print("finished");
                         FinishGrab();
                    
                     }
@@ -93,8 +92,7 @@ namespace RunIt.Movement
                     {
                         var jumpVelocity = (transform.forward + transform.up).normalized * upperJumpSpeed;
                         jumper.ExecuteJump(jumpVelocity, false);
-                        print("jumped up");
-                    
+
                     }
                     else //jump downwards
                     {

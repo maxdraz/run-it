@@ -10283,7 +10283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccabfa0361f5921468a5b2f2d1e254e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 15
+  gravity: 16.5
 --- !u!1001 &1844807507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19894,6 +19894,10 @@ PrefabInstance:
     - target: {fileID: 2986034580300133019, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986034580300133022, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
+      propertyPath: maxForwardSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2986034580300133023, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_RootOrder
