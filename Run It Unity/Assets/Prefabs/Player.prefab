@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2986034580300133019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df1d2e0de8374a66911cbbf1eb5d5f0f, type: 3}
   m_Name: 
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   jumpOffStrength: 5
   upperJumpSpeed: 10
   lowerJumpSpeed: 8
-  distToTopOfWall: 0.75
+  distToTopOfWall: 1.4
   dotToClimbUp: -0.3
 --- !u!114 &394348008
 MonoBehaviour:
