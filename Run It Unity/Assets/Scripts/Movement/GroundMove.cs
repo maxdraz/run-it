@@ -11,6 +11,9 @@ namespace RunIt.Movement
         [SerializeField] private float acceleration;
         [SerializeField] private float maxSpeed;
         [SerializeField] private TriggerDetector groundTriggerDetector;
+        private Vector3 inputDir;
+
+        public Vector3 InputDir => inputDir;
 
         void FixedUpdate()
         {
@@ -19,20 +22,20 @@ namespace RunIt.Movement
             ExecuteMovement();
         }
 
-        private Vector3 GetInputDirection()
+        private void GetInputDirection()
         {
             if (action == null) InputManager.Instance.GetAction(inputName);
 
             var input = action.ReadValue<Vector2>();
             var dir = transform.TransformDirection(new Vector3(
                 input.x, 0, input.y)).normalized;
-
-            return dir;
+            
+            inputDir = dir;
         }
 
         private void ExecuteMovement()
         {
-            var inputDir = GetInputDirection();
+            GetInputDirection();
 
             var velocity = rb.velocity;
             velocity += inputDir * acceleration;

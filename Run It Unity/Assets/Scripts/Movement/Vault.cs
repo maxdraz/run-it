@@ -48,7 +48,7 @@ namespace RunIt.Movement
                 {
                     rb.isKinematic = false;
                     vaultStarted = false;
-                   // rb.velocity = transform.forward * prevVelocity.magnitude;
+                   //rb.velocity = transform.forward * prevVelocity.magnitude;
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace RunIt.Movement
         }
         void OnWallStay2(Ray ray,RaycastHit hit)
         {
-            if (vaultStarted || groundDetector.detected || rb.velocity.y < -lowWallFallThreshold) return; // def 0.6f
+            if (vaultStarted || groundDetector.detected || rb.velocity.y < -lowWallFallThreshold) return; // dflt 0.6f
             var isWallVaultable = IsWallValutable(hit);
             if(!isWallVaultable) return;
             
@@ -72,7 +72,7 @@ namespace RunIt.Movement
         
         void OnHighWallStay(Ray ray,RaycastHit hit)
         {
-            if (vaultStarted || groundDetector.detected || rb.velocity.y < -highWallFallThreshold) return; // def -2f
+            if (vaultStarted || groundDetector.detected || rb.velocity.y < -highWallFallThreshold) return; // dflt -2f
             var isWallVaultable = IsWallValutable(hit);
             if(!isWallVaultable) return;
             

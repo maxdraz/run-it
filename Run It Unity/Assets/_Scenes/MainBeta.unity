@@ -19879,25 +19879,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2986034579373362609, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: m_Size.z
-      value: 1.9298359
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986034579373362609, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: m_Center.x
-      value: -0.0000000018649324
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986034579373362609, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: m_Center.z
-      value: 0.46491823
-      objectReference: {fileID: 0}
     - target: {fileID: 2986034580300133019, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986034580300133022, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: maxForwardSpeed
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2986034580300133023, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_RootOrder
@@ -19942,14 +19926,6 @@ PrefabInstance:
     - target: {fileID: 2986034580300133023, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986034580300133037, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: scale
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986034580300133037, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
-      propertyPath: fallThreshold
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}

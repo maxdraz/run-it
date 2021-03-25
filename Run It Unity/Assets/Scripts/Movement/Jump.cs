@@ -1,6 +1,7 @@
 using System;
 using RunIt.Audio;
 using RunIt.Detection;
+using RunIt.Testing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,7 @@ namespace RunIt.Movement
         [SerializeField] private FMODEventPlayer jumpSound;
         private bool inputLetGo = true;
         private bool canJump = true;
+        private GroundMoveTest4 groundMove;
         
 
         protected override void Start()
@@ -20,6 +22,8 @@ namespace RunIt.Movement
             base.Start();
             action.started += OnInputStarted;
             action.canceled += OnInputCanceled;
+
+            groundMove = GetComponent<GroundMoveTest4>();
         }
 
         private void OnDisable()
@@ -48,7 +52,7 @@ namespace RunIt.Movement
             var jumpForce = new Vector3(0, jumpForceMagnitude, 0);
             //rb.AddForce(transform.forward + jumpForce, ForceMode.Impulse);
             var mag = rb.velocity.magnitude;
-            var jumpVel = ((transform.forward)*mag) + new Vector3(0, jumpForceMagnitude, 0);
+            var jumpVel = ((groundMove.InputDir)*mag) + new Vector3(0, jumpForceMagnitude, 0);
             rb.velocity = jumpVel;
         }
 

@@ -26,7 +26,9 @@ namespace RunIt.Testing
         [SerializeField] private InputRotator rotator;
         [SerializeField] private Detector groundDetector;
         private Vector3 inputDir;
-        [SerializeField] private float strideLength = 1;
+        public Vector3 InputDir => inputDir;
+
+        private float strideLength = 1;
         private float footStepTimer;
         [SerializeField] private FMODEventPlayer footstepSound;
         [SerializeField] private FMODEventPlayer landingSound;

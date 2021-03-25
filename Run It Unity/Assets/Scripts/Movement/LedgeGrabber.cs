@@ -24,6 +24,8 @@ namespace RunIt.Movement
         private Jump jumper;
         private Vector3 hangPos;
         [SerializeField] private float distToTopOfWall;
+
+        [SerializeField] private float dotToClimbUp = 0.1f;
         //private Mover mover;
 
         private void Awake()
@@ -57,15 +59,17 @@ namespace RunIt.Movement
 
             // check whether to climb, or jump off
             var input = grabAction.ReadValue<float>();
-
+            
+            var dotTemp = Vector3.Dot(hitInfo.normal, transform.forward);
+            print( "dot product is: "+dotTemp);
             if (input <= 0)
             {
                 
                 //jump
                 //get dot with wall
                 var dot = Vector3.Dot(hitInfo.normal, transform.forward);
-
-                if (dot <= 0.1f) //facing towards wall
+               
+                if (dot <= dotToClimbUp) //facing towards wall
                 {
                     //climb on top of wall
                     var climbPos = hitInfo.point + (-hitInfo.normal  * 0.3f) + climbUpPos;
