@@ -1493,7 +1493,7 @@ MonoBehaviour:
   jumpOffStrength: 5
   upperJumpSpeed: 10
   lowerJumpSpeed: 8
-  distToTopOfWall: 1.4
+  distToTopOfWall: 1.8
   dotToClimbUp: -0.3
 --- !u!114 &394348008
 MonoBehaviour:
