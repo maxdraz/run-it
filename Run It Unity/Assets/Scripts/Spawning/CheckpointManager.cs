@@ -27,6 +27,8 @@ namespace RunIt.Spawning
             }
             
             playerGO = GameObject.FindWithTag("Player");
+            
+            if(!playerGO) return;
             health = playerGO.GetComponent<Health>();
             deathTextDisplayer = DeathUI.GetComponentInChildren<BasicUIDisplayer>();
         }

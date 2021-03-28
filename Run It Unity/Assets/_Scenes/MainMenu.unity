@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799c3c6434126b44386300a760fe79eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: -944628639613478452, guid: f8394de030ade9c40ba9f3f7ca01ef5a, type: 3}
 --- !u!4 &113187634
 Transform:
   m_ObjectHideFlags: 0
@@ -1306,6 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd9d20bd0b8d1c438367defcec1d48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadNextSceneDetector: {fileID: 0}
   restartActionName: Reload Scene
 --- !u!1 &1007800954
 GameObject:
@@ -1524,6 +1524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
+  DeathUI: {fileID: 0}
 --- !u!1 &1284209094
 GameObject:
   m_ObjectHideFlags: 0

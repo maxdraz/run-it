@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{778e1bf2-148f-47a8-90db-e57e6f5ed1ca}">
+		<property name="assetPath">
+			<value>Death Sounds/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{50c88222-8609-4e3e-a316-979016d1eff2}</destination>
+		</relationship>
+	</object>
+</objects>

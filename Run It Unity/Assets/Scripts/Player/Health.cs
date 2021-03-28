@@ -1,5 +1,6 @@
 ﻿using System;
 using FMODUnity;
+using RunIt.Audio;
 using RunIt.Detection;
 using RunIt.Enemies;
 using RunIt.UI;
@@ -30,6 +31,8 @@ namespace RunIt.Player
         public int MaxHealth => maxHealth;
         public delegate void DeathHandler(DamageInfo damageInfo);
         public event DeathHandler PlayerDied;
+        [SerializeField] private FMODEventPlayer deathSound;
+        [SerializeField] private FMODEventPlayer damagedSound;
 
         private void Awake()
         {
@@ -54,6 +57,15 @@ namespace RunIt.Player
                 
                 PlayerDied?.Invoke(damageInfo);
                 health = maxHealth;
+                
+                //death sound
+                deathSound.Play();
+            }
+            
+            //damage sounds
+            if (damageInfo.damageType == DamageInfo.DamageType.Enemy)
+            {
+                damagedSound.Play();
             }
         }
 
