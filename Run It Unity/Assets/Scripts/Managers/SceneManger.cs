@@ -12,8 +12,12 @@ namespace RunIt.Managers
         private InputAction action;
         private int currentSceneIndex;
         [SerializeField] private Detector loadNextSceneDetector;
-
         [SerializeField] private string restartActionName;
+
+        [SerializeField] private bool loadSpecificScene;
+        [SerializeField] private int sceneToLoad;
+
+        [SerializeField] private bool deactivateReloadSceneInput;
 
         private void Awake()
         {
@@ -32,6 +36,7 @@ namespace RunIt.Managers
             currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
             
             action = InputManager.Instance.GetAction(restartActionName);
+            
             action.started += OnRestart;
         }
 
@@ -68,6 +73,7 @@ namespace RunIt.Managers
 
         private void OnRestart(InputAction.CallbackContext ctxt)
         {
+            if(deactivateReloadSceneInput) return;
             LoadScene(currentSceneIndex);
         }
 
@@ -87,7 +93,15 @@ namespace RunIt.Managers
 
         private void OnLoadNextScene(Collider other)
         {
-            LoadScene(2);
+            if (loadSpecificScene)
+            {
+                LoadScene(sceneToLoad);
+            }
+            else
+            {
+                LoadScene(2);
+            }
+            
         }
     }
 }
