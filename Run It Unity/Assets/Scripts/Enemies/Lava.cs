@@ -19,5 +19,9 @@ namespace RunIt.Enemies
             dealtDamage = true;
         }
 
+        private void OnTriggerExit(Collider other)
+        {
+            dealtDamage = false;
+        }
     }
 }
