@@ -1,4 +1,5 @@
-﻿using RunIt.Detection;
+﻿using System;
+using RunIt.Detection;
 using RunIt.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,10 @@ namespace RunIt.Movement
         [SerializeField] private float distToTopOfWall;
 
         [SerializeField] private float dotToClimbUp = 0.1f;
+
+        [SerializeField] private float checkIfClimbableHeight = 2f;
+
+        [SerializeField] private LayerMask isWall;
         //private Mover mover;
 
         private void Awake()
@@ -68,9 +73,17 @@ namespace RunIt.Movement
                 //jump
                 //get dot with wall
                 var dot = Vector3.Dot(hitInfo.normal, transform.forward);
+                
                
                 if (dot <= dotToClimbUp) //facing towards wall
                 {
+                    //see it there is wall directly above
+                    RaycastHit[] hits;
+                    var rayOrigin = hitInfo.point - (hitInfo.normal * 0.25f);
+                    hits = Physics.RaycastAll(rayOrigin, Vector3.up,checkIfClimbableHeight,isWall);
+
+                    if (hits.Length > 1) return;
+                    
                     //climb on top of wall
                     var climbPos = hitInfo.point + (-hitInfo.normal  * 0.3f) + climbUpPos;
                     var toClimbPos = climbPos - transform.position;
