@@ -292,6 +292,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 12666
+--- !u!114 &-4907530915321412463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Damaged
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Damaged
+  guid: 988a2d84b988a74880a53dcec6f48dcb
+  Banks:
+  - {fileID: 5504995842300229214}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 474
 --- !u!114 &-4549220171056215723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +406,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8347
+--- !u!114 &-3963936817707665574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Death
+  m_EditorClassIdentifier: 
+  Path: event:/Player/Death
+  guid: 1c664ed4fbb17f45aa7c716771f4da21
+  Banks:
+  - {fileID: 5504995842300229214}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &-3117160360769077184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,14 +635,14 @@ MonoBehaviour:
   - {fileID: -2667932747657737507}
   - {fileID: 1856897969140721174}
   - {fileID: -419802299158949889}
-  - {fileID: 5815131097588848925}
-  - {fileID: -8118814317365039625}
+  - {fileID: -3963936817707665574}
+  - {fileID: -4907530915321412463}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5504995842300229214}
   StringsBanks:
   - {fileID: 2805208010232300705}
-  stringsBankWriteTime: 637525517902450999
+  stringsBankWriteTime: 637525596120000000
   cacheVersion: 5
 --- !u!114 &256854439178469717
 MonoBehaviour:
@@ -770,7 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Run It FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637525517902450999
+  lastModified: 637525596120000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1006,7 +1052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/Run It FMOD/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637525517902410984
+  lastModified: 637525596120000000
   LoadResult: 0
   FileSizes: []
   Exists: 1
