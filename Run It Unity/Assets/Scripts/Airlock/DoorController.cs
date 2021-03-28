@@ -6,6 +6,22 @@ namespace RunIt.Airlock
     public class DoorController : MonoBehaviour
     {
         private Animator anim;
+        [SerializeField] private bool opened;
+
+        private void OnValidate()
+        {
+            if (!Application.isPlaying) return;
+            if(!anim) return;
+            
+            if (opened)
+            {
+                Open();
+            }
+            else
+            {
+                Close();
+            }
+        }
 
         private void Awake()
         {
