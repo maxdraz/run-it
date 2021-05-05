@@ -28,6 +28,8 @@ namespace RunIt.Testing
         [SerializeField] private InputRotator rotator;
         [SerializeField] private Detector groundDetector;
         private Vector3 inputDir;
+        private bool isGrounded;
+        public bool IsGrounded => isGrounded;
         public Vector3 InputDir => inputDir;
 
         private float strideLength = 1;
@@ -48,8 +50,9 @@ namespace RunIt.Testing
 
         private void Update()
         {
+            isGrounded = false;
             if (!groundDetector.detected) return;
-            
+            isGrounded = true;
             ExecuteGroundMove();
             PlayFootsteps();
         }

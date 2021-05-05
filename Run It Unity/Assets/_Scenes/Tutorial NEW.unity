@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: f445c7708ac314b4bb1efcd043f6bd04
+  m_OcclusionCullingData: {fileID: 36300000, guid: 7576573b867dd9542b5ebb64f53493e5, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -15634,6 +15634,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 347932695, guid: 6b652c10691b9e049827eb4592188fed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1171482675, guid: 6b652c10691b9e049827eb4592188fed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -39091,6 +39095,10 @@ PrefabInstance:
     - target: {fileID: 2986034580300133034, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: inputWindow
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986034580659247674, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
