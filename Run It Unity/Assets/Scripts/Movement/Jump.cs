@@ -14,7 +14,7 @@ namespace RunIt.Movement
         [SerializeField] private FMODEventPlayer jumpSound;
         private bool inputLetGo = true;
         private bool canJump = true;
-        private GroundMoveTest4 groundMove;
+        private GroundMover groundMove;
         
 
         protected override void Start()
@@ -23,7 +23,7 @@ namespace RunIt.Movement
             action.started += OnInputStarted;
             action.canceled += OnInputCanceled;
 
-            groundMove = GetComponent<GroundMoveTest4>();
+            groundMove = GetComponent<GroundMover>();
         }
 
         private void OnDisable()

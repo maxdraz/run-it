@@ -8,10 +8,11 @@ using UnityEngine;
 
 namespace RunIt.Testing
 {
-    public class GroundMoveTest4 : ParkourBehaviour
+    public class GroundMover : ParkourBehaviour
     {
         [SerializeField] private float maxSidewaysSpeed;
         [SerializeField] private float maxForwardSpeed;
+        public float MaxForwardSpeed => maxForwardSpeed;
         [SerializeField] private float sidewaysAcceleration;
         [SerializeField] private float forwardAcceleration;
         [SerializeField] private float turnDelta;
@@ -22,6 +23,7 @@ namespace RunIt.Testing
         [SerializeField] private float groundFriction = 10f;
         [SerializeField] private float turnFriction = 10f;
         [SerializeField] private Vector3 velocity;
+        public Vector3 Velocity => velocity;
         [SerializeField] private Vector3 acceleration;
         [SerializeField] private InputRotator rotator;
         [SerializeField] private Detector groundDetector;
