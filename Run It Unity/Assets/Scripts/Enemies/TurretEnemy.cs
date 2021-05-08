@@ -6,8 +6,9 @@ namespace RunIt.Enemies
 {
     public class TurretEnemy : MonoBehaviour
     {
-        [SerializeField] private Transform target;
+        private Transform target;
         private Quaternion originalRotation;
+        [SerializeField] private Transform turretHead;
         [Range(0, 1f)] [SerializeField] private float sampleSpeed = 0.1f;
         [SerializeField] private Detector targetDetector;
         [SerializeField] private GameObject bulletPrefab;
@@ -16,14 +17,19 @@ namespace RunIt.Enemies
         private float timer;
         private void Start()
         {
-            originalRotation = transform.rotation;
+            if (turretHead == null)
+            {
+                turretHead = transform;
+            }
+            
+            originalRotation = turretHead.rotation;
             timer = shotCooldown;
         }
 
         private void OnEnable()
         {
             targetDetector.Enter += OnTargetAcquired;
-            targetDetector.Exit += OnTargetLost;
+           targetDetector.Exit += OnTargetLost;
         }
 
         private void OnDisable()
@@ -34,7 +40,7 @@ namespace RunIt.Enemies
 
         private void Update()
         {
-            var angleToOriginal = Quaternion.Angle(transform.rotation,originalRotation);
+            var angleToOriginal = Quaternion.Angle(turretHead.rotation,originalRotation);
 
             if (angleToOriginal >= 0.2f && !target)
             {
@@ -56,14 +62,14 @@ namespace RunIt.Enemies
 
         private void RotateToTarget(Transform to)
         {
-            var toTarget = (to.position - transform.position).normalized;
+            var toTarget = (to.position - turretHead.position).normalized;
             var lookRotation = Quaternion.LookRotation(toTarget);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.1f);
+            turretHead.rotation = Quaternion.Slerp(turretHead.rotation, lookRotation, 0.1f);
         }
         
         private void RotateToTarget(Quaternion to)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, to, 0.1f);
+            turretHead.rotation = Quaternion.Slerp(turretHead.rotation, to, 0.1f);
         }
 
         private void OnTargetLost(Collider other)
@@ -80,7 +86,7 @@ namespace RunIt.Enemies
         {
             var bullet = GameObject.Instantiate(bulletPrefab);
             bullet.transform.position = bulletSpawnPoint.transform.position;
-            bullet.transform.rotation = transform.rotation;
+            bullet.transform.rotation = turretHead.rotation;
         }
     }
 }
