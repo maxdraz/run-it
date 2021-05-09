@@ -7414,7 +7414,7 @@ MonoBehaviour:
   loadNextSceneDetector: {fileID: 500163771}
   restartActionName: Reload Scene
   loadSpecificScene: 1
-  sceneToLoad: 0
+  sceneToLoad: 4
   deactivateReloadSceneInput: 0
 --- !u!1 &992802974
 GameObject:

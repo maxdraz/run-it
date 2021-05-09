@@ -35,9 +35,9 @@ namespace RunIt.Managers
         {
             currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
             
-            action = InputManager.Instance.GetAction(restartActionName);
+           // action = InputManager.Instance.GetAction(restartActionName);
             
-            action.started += OnRestart;
+         //   action.started += OnRestart;
         }
 
         private void OnEnable()
@@ -50,7 +50,7 @@ namespace RunIt.Managers
 
         private void OnDisable()
         {
-            action.started -= OnRestart;
+          //  action.started -= OnRestart;
             
             if (loadNextSceneDetector)
             {
@@ -99,7 +99,8 @@ namespace RunIt.Managers
             }
             else
             {
-                LoadScene(2);
+                //LoadScene(2);
+                LoadNextScene();
             }
             
         }

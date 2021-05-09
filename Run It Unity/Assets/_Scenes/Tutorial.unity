@@ -10990,8 +10990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadNextSceneDetector: {fileID: 1475077058}
   restartActionName: Reload Scene
-  loadSpecificScene: 0
-  sceneToLoad: 0
+  loadSpecificScene: 1
+  sceneToLoad: 3
   deactivateReloadSceneInput: 0
 --- !u!1 &979441310
 GameObject:
