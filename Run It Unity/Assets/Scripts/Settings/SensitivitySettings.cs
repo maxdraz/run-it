@@ -60,6 +60,7 @@ namespace RunIt.Settings
             var roundedValue = Mathf.Round(newValue * 10) / 10;
             controlSettings.sensitivity = roundedValue;
             ValueChanged?.Invoke(controlSettings.sensitivity);
+            SaveSettings();
         }
 
         private ControlSettings LoadSettings()
