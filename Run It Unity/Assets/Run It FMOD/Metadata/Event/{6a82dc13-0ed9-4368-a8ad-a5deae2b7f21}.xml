@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{6a82dc13-0ed9-4368-a8ad-a5deae2b7f21}">
 		<property name="name">
-			<value>GameplayMusic</value>
+			<value>MenuMusic</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{a287a306-5fda-45b2-b2ca-2d2260ee7d6b}</destination>
+			<destination>{2dd98704-098e-4df8-bbc5-e122d43e2171}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{e7180e0f-1c3e-4cd9-a1fa-ab7e539e1d5f}</destination>
