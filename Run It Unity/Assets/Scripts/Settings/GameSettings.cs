@@ -90,7 +90,7 @@ namespace RunIt.Settings
         public readonly string fileName = "playerSettings.json";
         public readonly string fullPath = "PlayerSettings/playerSettings.json";
         
-        public string playerName= "wwwwwwwww";
+        public string playerName= "";
     }
 
 

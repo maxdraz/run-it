@@ -1531,6 +1531,22 @@ PrefabInstance:
       propertyPath: damageInfo.damageAmout
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8338767784349550985, guid: 2b370384ba444d241b391826c13d56ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6133107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338767784349550985, guid: 2b370384ba444d241b391826c13d56ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338767784848648469, guid: 2b370384ba444d241b391826c13d56ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338767784848648469, guid: 2b370384ba444d241b391826c13d56ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b370384ba444d241b391826c13d56ae, type: 3}
 --- !u!4 &1439905000630144327 stripped
