@@ -1,4 +1,5 @@
 ﻿using System;
+using RunIt.Audio;
 using RunIt.Detection;
 using UnityEngine;
 
@@ -15,8 +16,11 @@ namespace RunIt.Enemies
         [SerializeField] private Transform bulletSpawnPoint;
         [SerializeField] private float shotCooldown;
         private float timer;
+
+        private FMODEventPlayer3D FMODPlayer;
         private void Start()
         {
+            FMODPlayer = GetComponent<FMODEventPlayer3D>();
             if (turretHead == null)
             {
                 turretHead = transform;
@@ -84,6 +88,7 @@ namespace RunIt.Enemies
 
         private void Shoot()
         {
+            FMODPlayer.Play();
             var bullet = GameObject.Instantiate(bulletPrefab);
             bullet.transform.position = bulletSpawnPoint.transform.position;
             bullet.transform.rotation = turretHead.rotation;

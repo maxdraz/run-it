@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2845508615842384327}
   - component: {fileID: -5851907709354180963}
   - component: {fileID: -468140983987213510}
+  - component: {fileID: -4730302515407647696}
   m_Layer: 8
   m_Name: Bullet
   m_TagString: Damageable
@@ -68,6 +69,19 @@ MonoBehaviour:
     damageType: 1
   lifeTime: 5
   force: 25
+--- !u!65 &-4730302515407647696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845508615842384324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2845508617007669686
 GameObject:
   m_ObjectHideFlags: 0
