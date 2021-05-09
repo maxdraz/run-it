@@ -103,5 +103,15 @@ namespace RunIt.Managers
             }
             
         }
+
+        public void ReloadScene()
+        {
+            LoadScene(currentSceneIndex);
+            if (Time.timeScale < 1f)
+            {
+                Time.timeScale = 1f;
+            }
+          
+        }
     }
 }
