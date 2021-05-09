@@ -39048,6 +39048,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2986034580300133022, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
+      propertyPath: strideLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986034580300133022, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
+      propertyPath: landingSoundSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2986034580300133023, guid: 0369ac7e1ae4bd544b79cbef01fb54d3, type: 3}
       propertyPath: m_RootOrder
       value: 0

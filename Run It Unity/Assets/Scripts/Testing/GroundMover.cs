@@ -32,7 +32,7 @@ namespace RunIt.Testing
         public bool IsGrounded => isGrounded;
         public Vector3 InputDir => inputDir;
 
-        private float strideLength = 1;
+        [SerializeField] private float strideLength = 1;
         private float footStepTimer;
         [SerializeField] private FMODEventPlayer footstepSound;
         [SerializeField] private FMODEventPlayer landingSound;
