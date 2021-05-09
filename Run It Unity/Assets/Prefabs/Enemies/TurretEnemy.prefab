@@ -508,6 +508,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2809380525616618169}
     m_Modifications:
     - target: {fileID: 2480011716918254596, guid: 7c3ad8d7ef34d2448b3ce1def9db0398, type: 3}
+      propertyPath: shotCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480011716918254596, guid: 7c3ad8d7ef34d2448b3ce1def9db0398, type: 3}
       propertyPath: targetDetector
       value: 
       objectReference: {fileID: 3869667807763070488}
